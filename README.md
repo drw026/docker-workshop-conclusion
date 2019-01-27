@@ -17,6 +17,9 @@ Prerequisites
 
 You should be able to SSH into a pre-setup AWS EC2 instance. 
 
+TODO:
+- add instructions to connect to the AWS instance.
+
 
 Other Resources
 ---------------
