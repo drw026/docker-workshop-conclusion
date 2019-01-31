@@ -1,168 +1,171 @@
-My First Container
-==================
+Hello Docker
+============
 
-We're going to build our first container.
-
-
-Step 1: Create the app
-----------------------
-
-1. Go to [nodejs.org](https://nodejs.org/en/about) and click on "About".
-
-2. Copy the sample program.
-
-3. Paste into a new file.
-
-4. Save the file in this `start` folder, and name the file `server.js`.
-
-5. Modify this line: `server.listen(port, hostname, () => {` to this: `server.listen(port, () => {` (e.g. remove `hostname` and the comma.)
+We gaan onze eerste container maken.
 
 
-Step 2: Craft the Dockerfile
-----------------------------
+1: Maak de app
+--------------
 
-1. Create a new file in this `start` folder named `Dockerfile` -- note it has no file extension.
+1. Ga naar [nodejs.org](https://nodejs.org/en/about).
 
-2. Write this line:
+2. Kopier de voorbeeld code.
+
+3. Plak het in een nieuw bestand.
+
+4. Sla het bestand als `server.js` in de start directory.
+
+5. Pas de volgende regel aan `server.listen(port, hostname, () => {` naar: `server.listen(port, () => {` (verwijder `hostname` komma.)
+
+
+2: Maak de Dockerfile
+---------------------
+
+1. Maak een nieuw bestand in de start directory en noem het Dockerfile -- Het bestand heeft geen extentie(bijv. .txt)
+
+2. Voeg de volgende regel toe:
 
    ```
    FROM node:alpine
    ```
 
-   This says "start with the [node](https://hub.docker.com/_/node/) base-image, and use the alpine flavor of it."  The alpine Linux distribution is known for being tiny.
+   Dit geeft aan start met de [node](https://hub.docker.com/_/node/) base-image en specifiek de alpine variant. 
+   De apline Linux staat bekend om dat deze heel klein is.
 
-   **Pro tip:** Rather than copying and pasting the text, type each step instead.  You'll become much more familiar with the new technology this way.
+   **Pro tip:** In plaats van de tekst te kopieren en plakken, typ je alles. Op die manier raak je sneller bekend met nieuwe technologie.
    
-3. Add this line:
+3. Voeg de volgende regel toe:
 
    ```
    WORKDIR /app
    ```
 
-   This says "I want my process to start from the `/app` directory."  It will create the directory if it doesn't exist.
+   Met deze regel start het process vanaf de /app directory. De directory wordt aangemaakt als die nog niet bestaat.
 
-4. Next line:
+4. Volgende regel:
 
    ```
    COPY . /app
    ```
 
-   This says "Copy all the files in my current folder on my drive into the `/app` directory in the image."
+   Deze regel kopieert alle bestande in je huidige directory naar de `/app` directory in de image.
 
-4. Another line:
+4. Volgende regel:
 
    ```
    EXPOSE 3000
    ```
 
-   This says "I want the container's port 3000 to be accessible for inbound traffic from outside the container."
+   Deze regel opent poort 3000 voor verkeer van buitenaf.
 
-5. Write
+5. Volgende regel:
 
    ```
    CMD ["node", "server"]
    ```
 
-   This says "The command line to run when starting the container is `node server`. In other words, Start Node with the `server.js` file."
+   Deze regel geeft het commando aan waarmee de container opstart `node server`. In andere woorden start Node met de `server.js`.
 
-6. Save the Dockerfile.  
+6. Sla de Dockerfile op
 
 
-Step 3: Build the Dockerfile into an image
-------------------------------------------
+Step 3: Maak een image aan met de Dockerfile
+--------------------------------------------
 
-1. From within the folder with the `Dockerfile` and `server.js` file, run this command from a command prompt:
+1. Vanuit de directory met de `Dockerfile` en `server.js`, voer je het volgende commando uit. 
 
    ```
    docker build --tag hellonode:0.1 .
    ```
+   Hiermee maak je een image op basis van de Dockerfile en tag je image met de naam `hellonode` en versie `0.1`.
 
-   This says "Build the current directory's Dockerfile into an image, and tag the image with the name `hellonode` and the version `0.1`".
-
-2. After it finishes, run this to see the image it built:
+2. Als de build klaar is voer dan het volgende uit.
 
    ```
    docker image list
    ```
+   
+   Jouw image staat bovenaan de lijst, omdat de lijst op aangemaakte datum gesorteerd is met de laatste bovenaan.
 
-   Your image is at the very top because this list is sorted by create date descending.
 
-
-Step 4: Run the image as a container
+4: Draai de container image
 ------------------------------------
 
-As you work through this section, if you find it doesn't work, look for debugging tips in section 5 below.
+Als je tegen problemen aanloopt tijdens het uitvoeren van de volgende stappen kijk dan naar de tips in deel 5.
 
-1. From a command prompt, run:
+1. Vanaf de command-line voer je het volgende uit.
 
    ```
    docker run -p 3000:3000 -d hellonode:0.1
    ```
 
-   This says "Run the image named `hellonode`, version `0.1` as a container, and NAT the host's port 3000 to port 3000 in the container.  `-d` says "run in daemon mode" or "run in the background."
+   Hiermee wordt de image `hellonode`, versie `0.1` als container. Poort 3000 wordt getNAT van de host naar poort 3000 in de container. `-d` zorgt ervoor dat de container in daemon mode draait op de achtergrond.
 
-2. Open a browser to [http://localhost:3000](http://localhost:3000).  Success!
+2. Roep met curl de url aan [http://localhost:3000](http://localhost:3000).  Success!
+   
+   ```
+   curl http://localhost:3000
+   ```
 
-3. To see the running containers, run
+3. Ziet de huidig draaiende container.
 
    ```
    docker container list
    ```
 
-   Is it not running?  See step 5.
+   Draait je container niet? Zie deel 5.
 
-**Note: you didn't install node!**
-
-
-Step 5: Debugging a failed container
-------------------------------------
-
-Did your container not start up correctly in Step 4?  Let's look for clues to what happened.
-
-1. Run `docker container list --all`.  This will show both running and stopped containers.
-
-2. Note the `CONTAINER ID` and/or the `NAMES` of the failed container.  We'll need it next.
-
-3. Run `docker container logs ...`, replacing `...` with the first few characters of the `CONTAINER ID` or the `NAMES` you found above.  This shows the console output from the failed container.  Did this give you clues on how to fix it?
-
-4. Remove the stopped container using Step 6 below, then return to Step 3 to rebuild the image and rerun the container.
-
-5. Start the container using `docker run -p 3000:3000 hellonode:0.1` without the `-d` so the console output comes straight to your screen.
-
-6. When you're ready, use CNTRL-C to break out of the console, and get back to the host's terminal.
-
-Is port 3000 already in use on your machine?  Change the host port to another port like 3001 with this command `docker run -p 3001:3000 hellonode:0.1`, then browse to `localhost:3001`.  Notice that inside the container, the server is still listening on port 3000.
+**Note: Je hebt node zelf niet hoeven te installeren**
 
 
-Step 6: Stop and Remove the container
--------------------------------------
+5: Debugging container
+----------------------
 
-1. Run `docker container list` to see running containers.  Note the `CONTAINER ID` and/or the `NAMES` of the running container.
+Is je container niet goed opgestart in deel 4? Dan vind je hier stappen om dit te onderzoeken.
 
-2. Run `docker container stop ...` replacing `...` with the first few characters of the `CONTAINER ID` or the `NAMES` you found above.  This stops the container.
+1. `docker container list --all`.  Dit laat alle draaiende en niet draaiende containers zien.
 
-3. Run `docker container list` and note the container is now stopped.
+2. Let op `CONTAINER ID` en `NAMES` van failed container.  Die hebben we bij de volgende stap nodig.
 
-4. Run `docker container list --all` to see all containers -- both stopped and started.
+3. `docker container logs ...`, vervang `...` met de `CONTAINER ID` of `NAMES` uit de vorige stap. Dit laat de console output zien van de container.
+    Wellicht geeft het een hint waarom de container gefailed is?
 
-5. Run `docker container rm ...` replacing `...` with the first few characters of the `CONTAINER ID` or the `NAMES` you found above.  This removes the container.
+4. Verwijder de container met het stop commando uit deel 6. Ga dan terug naar deel 3 en rebuild de image en run de container opnieuw.
 
-   The read-write layer for this container is now gone.  Good thing we didn't save anything there.
+5. Start de container met `docker run -p 3000:3000 hellonode:0.1` zonder `-d` de console output komt direct op je scherm.
 
-6. Run `docker image list`.  The image is still there, only the container we created by running the image is gone.
+6. Als je genoeg gezien hebt, gebruik dan CNTRL-C om terug te gaan naar je host's terminal.
+
+Is poort 3000 al in gebruik op je systeem. Je kunt de poort wijzigen naar bijvoorbeeld 3001 door `docker run -p 3001:3000 hellonode:0.1` uit te voeren. 
+Open dan de volgende url ```curl localhost:3001```
+
+6: Stop en verwijder de container
+---------------------------------
+
+1. `docker container list` -- Let op `CONTAINER ID` en `NAMES` van de running container.
+
+2. `docker container stop ...` vervang `...` met de `CONTAINER ID` of `NAMES` uit de vorige stap. Hiermee stop je de container.
+
+3. `docker container list` -- Zie dat de container nu stopped is.
+
+4. `docker container list --all` -- Zie alle container beide gestop en gestart.
+
+5. `docker container rm ...` vervang `...` met de `CONTAINER ID` of `NAMES` uit de vorige stap. Hiermee verwijder je de container.
+
+6. `docker image list`.  -- De image bestaat nog steeds. De container die we gemaakt hebben op basis van de image is weg.
 
 
-Step 7: Change the code, rebuild, rerun
----------------------------------------
+7: Wijzig de code, rebuild, rerun
+---------------------------------
 
-1. Modify `server.js` to change `Hello World` to say something else interesting.
+1. Wijzig de `server.js` en wijzig de `Hello World` naar iets anders.
 
-2. Run a `docker build` command, changing the version tag.
+2. `docker build` een nieuwe image met een andere versie.
 
-3. Run a `docker run` command to start the container.
+3. Doe een `docker run` om een nieuwe container te starten container.
 
-4. Browse to [http://localhost:3000](http://localhost:3000) to see the changes.
+4. curl [http://localhost:3000](http://localhost:3000) om te zien of je wijziging is gelukt.
 
-5. Run a `docker container stop` command to stop the container.
+5. Stop de container `docker container stop`.
 
-6. Run a `docker container rm` command to remove the container.
+6. Verwijder de container `docker container rm`.

@@ -1,57 +1,50 @@
 
 
-Docker Hands-on Workshop
-========================
+Docker Workshop
+===============
 
-Welcome to the Docker Hands-on workshop.
+Welkom bij de Docker workshop.
 
-TODO list
+TODO
 =========
-- Automate deployment of environments
-    - Automated deployment of multiple environmnets in AWS for participants
-    - Document how to get access for participants
-- 00-Installation
-    - Document installation of Docker CE on the EC2 instance
+- Automatiseren aanmaken van omgevingen op AWS
+    - Omgevingen opzetten voor deelnemers
+    - Documenteren hoe deelnemers kunnen verbinden met hun omgeving
+- 00-Installatie
+    - Documentatie voor het installeren van Docker CE
+    - Eventueel installatie van awscli (eventueel vooraf al installeren)
 - 01-Hello-World
-    - First container to run from a default image nginx image
-    - docker run the container and check the result
-    - Documentation
+    - Eerste container (docker pull nginx, docker run)
+    - Controle van het resultaat, zodat de deelnemers beter bekend raken met de docker commando's
+    - Documentatie voor de deelnemers
 - 02-Hello-Docker
-    - Create a node app from a Dockerfile
-    - Get the source code from https://nodejs.org/en/about/
-    - build the app 
-    - run the app
-    - Change the source code to say "Hello Docker"
-    - rebuild
-    - stop the old app and run the new app
+    - Maken van een node app met een Docker file
+    - Source code https://nodejs.org/en/about/
+    - build van de app en run van de app
+    - Aanpassen source code, zodat de container "Hello World" output
+    - Build van de nieuwe app
+    - Stop de oude app en run de nieuwe app
 03-
 
 
-Our Goals
+Het doel van deze sessie
 ---------
+Het doel van deze sessie is om bekend te raken met Docker en het maken van Docker containers.
 
-- Teach you the skills to leverage Docker in your environment today.
 
-
-Prerequisites
+Voorwaarden
 -------------
 
-You should be able to SSH into a pre-setup AWS EC2 instance.
-You can clone this repository to your EC2 instance.
+Je kunt SSH'en naar vooraf opgezette AWS EC2 instance.
+Maak een clone van deze repository op de EC2 instance of je computer.
 
-Alternative
+Alternatief
 -----------
-You can work on your local laptop and sync the files you create with scp or WinSCP to the EC2 instance.
 
+Je kunt de repository clonen naar de laptop en de code met SCP of WinSCP uploaden naar je EC2 instance.
 
-TODO:
-- add instructions to connect to the AWS instance.
-
-
-Other Resources
----------------
-
-If you find the guy in the front of the room particularly boring, jump into these resources:
+Artikels
+--------
 
 - http://training.play-with-docker.com/
 - http://labs.play-with-docker.com/
