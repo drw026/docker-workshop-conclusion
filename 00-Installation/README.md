@@ -6,9 +6,9 @@ Installatie Docker CE on AWS EC2
 
 ### Linux
 
-Volg de instructies op docs.docker.com.
+Volg de installing docker instructies.
 
-- Other: [https://docs.docker.com/engine/installation/linux/docker-ce/binaries/](https://docs.docker.com/engine/installation/linux/docker-ce/binaries/)
+- [https://docs.aws.amazon.com/AmazonECS/latest/developerguide/docker-basics.html#install_docker](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/docker-basics.html#install_docker)
 
 
 Controle
