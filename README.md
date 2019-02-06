@@ -31,7 +31,6 @@ TODO
     - Maken van een dotnet core multi-stage build app
     - Documentatie over de app
 
-
 Het doel van deze sessie
 ---------
 Het doel van deze sessie is om bekend te raken met Docker en het maken van Docker containers.
