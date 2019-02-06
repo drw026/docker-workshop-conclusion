@@ -11,21 +11,21 @@ TODO
     - Omgevingen opzetten voor deelnemers
     - Documenteren hoe deelnemers kunnen verbinden met hun omgeving
 - 00-Installatie
-    DONE - Documentatie voor het installeren van Docker CE
+    - DONE - Documentatie voor het installeren van Docker CE
     - Eventueel installatie van awscli (eventueel vooraf al installeren)
 - 01-Hello-World
-    DONE - Eerste container (docker pull nginx, docker run)
-    DONE - Controle van het resultaat, zodat de deelnemers beter bekend raken met de docker commando's
-    DONE - Documentatie voor de deelnemers
+    - DONE - Eerste container (docker pull nginx, docker run)
+    - DONE - Controle van het resultaat, zodat de deelnemers beter bekend raken met de docker commando's
+    - DONE - Documentatie voor de deelnemers
 - 02-Hello-Docker
-    DONE - Maken van een node app met een Docker file
-    DONE - Source code https://nodejs.org/en/about/
-    DONE - build van de app en run van de app
-    DONE - Aanpassen source code, zodat de container "Hello World" output
-    DONE - Build van de nieuwe app
-    DONE - Stop de oude app en run de nieuwe app
+    - DONE - Maken van een node app met een Docker file
+    - DONE - Source code https://nodejs.org/en/about/
+    - DONE - build van de app en run van de app
+    - DONE - Aanpassen source code, zodat de container "Hello World" output
+    - DONE - Build van de nieuwe app
+    - DONE - Stop de oude app en run de nieuwe app
 03-multi-stage-build
-    DONE - Maken van een react applicatie middels een multi-stage build
+    - DONE - Maken van een react applicatie middels een multi-stage build
     - Documentatie over de react app
 04-multi-stage-build-2
     - Maken van een dotnet core multi-stage build app
