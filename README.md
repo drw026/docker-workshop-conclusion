@@ -1,4 +1,3 @@
-
 Docker Workshop
 ===============
 
@@ -26,7 +25,7 @@ TODO
 - 03-multi-stage-build
     - DONE - Maken van een react applicatie middels een multi-stage build
     - Documentatie over de react app
-04-multi-stage-build-2
+- 04-multi-stage-build-2
     - Maken van een dotnet core multi-stage build app
     - Documentatie over de app
 
