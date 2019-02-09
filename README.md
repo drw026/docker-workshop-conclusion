@@ -28,6 +28,25 @@ TODO
 - 04-multi-stage-build-2
     - Done - Maken van een dotnet core multi-stage build app
     - Done - Documentatie over de app
+- 05-volumes
+    - TODO
+    - Documentatie
+- 06-secrets
+    - TODO
+    - Documentatie
+- 07-microservices-app
+    - frontend
+    - backend
+    - Documentatie
+- 08-LAMP-stack
+    - TODO
+    - Documentatie
+- 09-APP-on-AWS
+    - TODO
+    - Documentatie
+- 10-LAMP-on-AWS
+    - TODO
+    - Documentatie
 
 Het doel van deze sessie
 ---------

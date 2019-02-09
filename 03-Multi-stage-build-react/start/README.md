@@ -6,7 +6,7 @@ Door gebruikt te maken van multi-stage builds kunnen we de uit eindelijke contai
 
 
 1: Maken van de Dockerfile
-----------------------------
+--------------------------
 
 1. Maak een nieuw bestand in de `src` directory en noem het `Dockerfile`
 

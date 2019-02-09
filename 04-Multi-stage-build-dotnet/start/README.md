@@ -5,8 +5,8 @@ In .NET Core hanteren we hetzelfde principe van een builden en daarna deployen v
 Door gebruik te maken van een multi-stage build houden we de container klein.
 
 
-1: Build the Dockerfile
-----------------------------
+1: Maken van de Dockerfile
+--------------------------
 
 1. Maak een nieuw bestand in de `src` directory en noem het `Dockerfile`
 
