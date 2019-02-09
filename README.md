@@ -24,9 +24,9 @@ TODO
     - DONE - Stop de oude app en run de nieuwe app
 - 03-multi-stage-build
     - DONE - Maken van een react applicatie middels een multi-stage build
-    - Documentatie over de react app
+    - DONE - Documentatie over de react app
 - 04-multi-stage-build-2
-    - Maken van een dotnet core multi-stage build app
+    - WIP - Maken van een dotnet core multi-stage build app
     - Documentatie over de app
 
 Het doel van deze sessie
