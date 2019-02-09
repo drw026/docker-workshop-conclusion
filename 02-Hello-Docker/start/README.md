@@ -158,7 +158,7 @@ Open dan de volgende url ```curl localhost:3001```
 7: Wijzig de code, rebuild, rerun
 ---------------------------------
 
-1. Wijzig de `server.js` en wijzig de `Hello World` naar iets anders.
+1. Wijzig de `server.js` en wijzig de `Hello Docker` naar iets anders.
 
 2. `docker build` een nieuwe image met een andere versie.
 
