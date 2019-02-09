@@ -30,3 +30,5 @@ Downloading docker images takes a while, so let's kick this off so we make sure 
 
 1. `docker pull nginx`
 2. `docker pull node:alpine`
+3. `docker pull microsoft/dotnet:2.1-aspnetcore-runtime`
+4. `docker pull microsoft/dotnet:2.1-sdk`

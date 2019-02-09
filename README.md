@@ -26,8 +26,8 @@ TODO
     - DONE - Maken van een react applicatie middels een multi-stage build
     - DONE - Documentatie over de react app
 - 04-multi-stage-build-2
-    - WIP - Maken van een dotnet core multi-stage build app
-    - Documentatie over de app
+    - Done - Maken van een dotnet core multi-stage build app
+    - Done - Documentatie over de app
 
 Het doel van deze sessie
 ---------

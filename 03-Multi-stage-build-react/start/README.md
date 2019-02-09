@@ -1,8 +1,8 @@
-Multi-stage Build
-=================
+Multi-stage Build met React
+============================
 
 In de vorige opdracht hebben we direct de source-code in onze container gekopieerd. In deze opdracht gaan we eerst builden en deployen we de gemaakte artifacts.
-Door gebruikt te maken van multi-stage builds kunnen we de uit eingelijke container klein houden, omdat we de build tools en source-code niet deployen.
+Door gebruikt te maken van multi-stage builds kunnen we de uit eindelijke container klein houden, omdat we de build tools en source-code niet deployen.
 
 
 1: Maken van de Dockerfile
@@ -24,7 +24,7 @@ Door gebruikt te maken van multi-stage builds kunnen we de uit eingelijke contai
    WORKDIR /usr/app
    ```
 
-   Met deze regel start het process vanaf de /app directory. De directory wordt aangemaakt als die nog niet bestaat.
+   Met deze regel start het process vanaf de `/usr/app` directory. De directory wordt aangemaakt als die nog niet bestaat.
 
 
 4. Voeg de volgende regel toe:
@@ -43,7 +43,7 @@ Door gebruikt te maken van multi-stage builds kunnen we de uit eingelijke contai
 
    Hiermee worden de packages en dependencies geinstalleerd die nodig zijn voor onze applicatie. 
 
-   We kopieren de package.json en package-lock.json eerst, zodat we optimaal gebruik kunnen maken van de Docker layer caching. Wanneer we de source code van de applicatie aanpassen en de image opnieuwe builden hoeven de npm packages niet opnieuw gedownload te worden. 
+   We kopieren de package.json en package-lock.json eerst, zodat we optimaal gebruik kunnen maken van de Docker layer caching. Wanneer we de source code van de applicatie aanpassen en de image opnieuw builden worden de npm packages niet opnieuw gedownload. 
    Zeker bij applicaties met veel npm packages en dependecies is de build tijd dan drastisch korter.
 
 6. Voeg de volgende regel toe:
@@ -87,13 +87,14 @@ Door gebruikt te maken van multi-stage builds kunnen we de uit eingelijke contai
 
 
 2: Maak een image aan met de Dockerfile
-------------------------------------------
+---------------------------------------
 
 1. Vanuit de `src` directory met de `Dockerfile`, voer je het volgende commando uit. 
 
    ```
    docker build --tag hello-react:0.1 .
    ```
+
    Hiermee maak je een image op basis van de Dockerfile en tag je image met de naam `hello-react` en versie `0.1`.
 
 2. Als de build klaar is. Controleer je dat je image aanwezig is.
@@ -117,7 +118,7 @@ Als je tegen problemen aanloopt tijdens het uitvoeren van de volgende stappen ki
    docker run -p 3000:3000 -d hello-react:0.1
    ```
 
-   Hiermee wordt de image `hello-react`, versie `0.1` als container. Poort 3000 wordt getNAT van de host naar poort 3000 in de container. `-d` zorgt ervoor dat de container in daemon mode draait op de achtergrond.
+   Hiermee wordt de image `hello-react`, versie `0.1` als container gestart. Poort 3000 wordt getNAT van de host naar poort 3000 in de container. `-d` zorgt ervoor dat de container in daemon mode draait op de achtergrond.
 
 2. Roep met curl de url aan [http://localhost:3000](http://localhost:3000).  Success!
    
@@ -194,16 +195,17 @@ Open dan de volgende url ```curl localhost:3001```
    COPY --from=build /usr/app/build /usr/share/nginx/html
    ```
 
-   Deze regel gebruikt de `--from=builder`, hiermee kopieeren je bestanden van de image `build` naar de container.
+   Deze regel gebruikt de `--from=build`, hiermee kopieeren we bestanden van de image `build` naar de container.
    
-4. Verander boven aan de `FROM node:alpine` naar:
+5. Verander bovenaan de `FROM node:alpine` naar:
 
    ```
-   FROM node:alpine as build
+   FROM node:alpine AS build
    ```
+   
    De eerste image heeft nu een naam gekregen en het `COPY` commando kan dit gebruiken.
 
-7. Sla de Dockerfile op.
+6. Sla de Dockerfile op.
 
 
 7: Build de multi-stage image
@@ -214,7 +216,7 @@ Open dan de volgende url ```curl localhost:3001```
    ```
    docker build --tag hello-react:0.2 .
    ```
-   Hiermee maak je een image op basis van de Dockerfile en tag je image met de naam `hello-react` en versie `0.2`.
+   Hiermee maak je een image op basis van de Dockerfile en tag je de image met de naam `hello-react` en versie `0.2`.
 
 2. Als de build klaar is. Controleer je dat je image aanwezig is.
 
@@ -234,7 +236,7 @@ Open dan de volgende url ```curl localhost:3001```
 
 2. Open met je browser [http://localhost](http://localhost).  Success!
 
-3. Ziet de huidig draaiende container.
+3. Controleer de huidig draaiende container.
 
    ```
    docker container list
@@ -263,7 +265,7 @@ Het doel met de multi-stage build is om een kleinere image te maken. Controleer 
    In de meest rechtse kolom kun je de size zien van de images. Kijk naar de images `hello-react:0.1` en `hello-react:0.2`.
    De `0.2` versie is veel kleiner dan de `0.1` versie. 
 
-Docker heeft twee images gemaakt. 1 heet `<none>` en heeft de node applicatie die de source-code gebuild heeft. De andere is `hello-react:0.2` en is vele malen kleiner. We hebben dit gedaan, omdat we op een productie server geen build tools willen hebben. 
+Docker heeft twee images gemaakt. Een heet `<none>` en heeft de node applicatie die de source-code gebuild heeft. De andere is `hello-react:0.2` en is vele malen kleiner. We hebben dit gedaan, omdat we op een productie server geen build tools willen hebben. 
 
 
 11: Verwijderen van de <none> images
