@@ -28,5 +28,5 @@ Start downloading docker images
 
 Downloading docker images takes a while, so let's kick this off so we make sure they exist when we need them:
 
-1. `docker pull nginx:alpine`
+1. `docker pull nginx`
 2. `docker pull node:alpine`

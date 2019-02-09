@@ -18,8 +18,8 @@ We gaan onze eerste container maken.
 5. Pas de volgende regel aan `server.listen(port, hostname, () => {` naar: `server.listen(port, () => {` (verwijder `hostname` komma.)
 
 
-2: Maak de Dockerfile
----------------------
+2: Maken van de Dockerfile
+--------------------------
 
 1. Maak een nieuw bestand in de start directory en noem het Dockerfile -- Het bestand heeft geen extentie(bijv. .txt)
 
@@ -48,7 +48,7 @@ We gaan onze eerste container maken.
    COPY . /app
    ```
 
-   Deze regel kopieert alle bestande in je huidige directory naar de `/app` directory in de image.
+   Deze regel kopieert alle bestanden in je huidige directory naar de `/app` directory in de image.
 
 4. Volgende regel:
 
@@ -69,7 +69,7 @@ We gaan onze eerste container maken.
 6. Sla de Dockerfile op
 
 
-Step 3: Maak een image aan met de Dockerfile
+3: Maak een image aan met de Dockerfile
 --------------------------------------------
 
 1. Vanuit de directory met de `Dockerfile` en `server.js`, voer je het volgende commando uit. 
@@ -89,7 +89,7 @@ Step 3: Maak een image aan met de Dockerfile
 
 
 4: Draai de container image
-------------------------------------
+---------------------------
 
 Als je tegen problemen aanloopt tijdens het uitvoeren van de volgende stappen kijk dan naar de tips in deel 5.
 
