@@ -31,26 +31,28 @@ TODO
 - 05-volumes
     - Done - Gebruik maken van een volume
     - Done - Documentatie
-- 06-secrets
+- 06-microservices-app
+    - Opties
+        - 3. https://github.com/robrich/docker-hands-on-workshop/tree/master/06-A-bigger-site
+        - 2. https://dwmkerr.com/learn-docker-by-building-a-microservice/
+        - 1. https://dzone.com/articles/microservices-an-example-with-docker-go-and-mongod
+
+        - 4. https://www.linode.com/docs/applications/containers/deploying-microservices-with-docker/
+    - Documentatie
+- 07-LAMP-stack
     - TODO
     - Documentatie
-- 07-microservices-app
-    - frontend
-    - backend
-    - Documentatie
-- 08-LAMP-stack
+- 08-APP-on-AWS
     - TODO
     - Documentatie
-- 09-APP-on-AWS
+- 09-LAMP-on-AWS
     - TODO
     - Documentatie
-- 10-LAMP-on-AWS
-    - TODO
-    - Documentatie
+- 10-Free-for-all
 
 Het doel van deze sessie
 ---------
-Het doel van deze sessie is om bekend te raken met Docker en het maken van Docker containers.
+Het doel van deze sessie is om bekend te raken met Docker en het maken van applicaties met Docker containers.
 
 
 Voorwaarden
