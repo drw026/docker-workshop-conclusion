@@ -49,7 +49,7 @@ Merk op dat de `npm init` niet opnieuw gedaan is. Caching!
 
 4. Maak een lege upload directory aan.
 
-5. Start de nieuwe image `docker run -p 3000:3000 -v /pad/naar/start/upload:/app/public -d volumetest:0.2` vervang `/pad/naar/start/upload` met de directory uit stap 4.
+5. Start de nieuwe image `docker run -p 3000:3000 -v $PWD/upload:/app/public -d volumetest:0.2` vervang `/pad/naar/start/upload` met de directory uit stap 4.
 
 6. Browse naar [http://localhost:3000/](http://localhost:3000/) en upload een bestand. Klik op [See files](http://localhost:3000/files) en zie het bestand die je zojuist geupload hebt.
 
