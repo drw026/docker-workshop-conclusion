@@ -29,8 +29,8 @@ TODO
     - Done - Maken van een dotnet core multi-stage build app
     - Done - Documentatie over de app
 - 05-volumes
-    - TODO
-    - Documentatie
+    - Done - Gebruik maken van een volume
+    - Done - Documentatie
 - 06-secrets
     - TODO
     - Documentatie
