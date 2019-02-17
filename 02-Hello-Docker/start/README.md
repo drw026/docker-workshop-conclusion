@@ -50,7 +50,7 @@ We gaan onze eerste container maken.
 
    Deze regel kopieert alle bestanden in je huidige directory naar de `/app` directory in de image.
 
-4. Volgende regel:
+5. Volgende regel:
 
    ```
    EXPOSE 3000
@@ -58,7 +58,7 @@ We gaan onze eerste container maken.
 
    Deze regel opent poort 3000 voor verkeer van buitenaf.
 
-5. Volgende regel:
+6. Volgende regel:
 
    ```
    CMD ["node", "server"]
@@ -66,7 +66,7 @@ We gaan onze eerste container maken.
 
    Deze regel geeft het commando aan waarmee de container opstart `node server`. In andere woorden start Node met de `server.js`.
 
-6. Sla de Dockerfile op
+7. Sla de Dockerfile op
 
 
 3: Maak een image aan met de Dockerfile
