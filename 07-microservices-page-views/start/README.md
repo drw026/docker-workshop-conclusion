@@ -1,68 +1,77 @@
-Microservices - Page views
+Microservices - Page Views
 ==========================
 
+In deze opdracht gaan we een mircoservices applicatie maken die bij houdt hoe vaak de webpagina bezocht is.
+De applicatie bestaat uit vier onderdelen
+    - [PostgreSQL](https://www.postgresql.org/)
+    - [Redis](https://redis.io/)
+    - [Flask](http://flask.pocoo.org/)
+    - [NGINX](https://www.nginx.com/)
+
+**Tip:** Je kunt jouw werkt controleren met wat in de done map staat.
 
 1: NGINX
 --------
 
-1. Maak een nieuw bestand in de nginx directory en noem het Dockerfile.
+1. Maak een NGINX webserver container aan de hand van de volgende voorwaarden.
+    - Maak een Dockerfile voor de NGINX websever.  
+    - Zorg dat de `src/nginx.conf` gekopieerd wordt in de container. 
+    - NGINX moet beschikbaar zijn op poort 80
 
-2. Voeg de volgende regel toe:
+2. Build de NGINX container
+    - Tag de de container met pageviews-nginx
 
-   ```
-   FROM nginx:alpine
-   ```
+3. Als de build klaar is controleer dat je image aanwezig is.
 
-3. Voeg de volgende regel toe:
 
-   ```
-   COPY src/nginx.conf /etc/nginx/nginx.conf
-   ```
-
-   Deze regel kopieert de `nginx.conf` vanuit de `src` naar `/etc/nginx/nginx.conf` in de image.
-
-4. Volgende regel:
-
-   ```
-   EXPOSE 80
-   ```
-
-   Deze regel opent poort 80 voor verkeer van buitenaf.
-
-5. Sla de Dockerfile op
-
-6. Vanuit de `nginx` directory, voer je het volgende commando uit. 
-
-   ```
-   docker build --tag pageviews-nginx .
-   ```
-   
-Hiermee maak je een image op basis van de Dockerfile en tag je image met de naam `pageviews-nginx`.
-
-7. Als de build klaar is voer dan het volgende uit.
-
-   ```
-   docker image list
-   ```
-   
-Jouw image staat bovenaan de lijst.
-
-X: PostgreSQL
+2: PostgreSQL
 -------------
 
+1. Maak een PostgreSQL database container
+    - Maak een Dockerfile voor de PostgreSQL database server
+    - Maak de volgende environment(ENV) variablen aan:
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=dbPageViews
+        - POSTGRES_DB=dbPageViews
+    - Zorg dat de `src/init.sh` gekopieerd wordt in de contianer naar `/docker-entrypoint-initdb.d`
+    - PostgreSQL moet beschikbaar zijn op poort 5432
 
-X: redis
+2. Build de PostgreSQL container
+    - Tag de de container met pageviews-postgres
+
+3. Als de build klaar is, controleer dat je image aanwezig is.
+
+
+3: Redis
 --------
 
+1. Maak een Dockerfile voor Redis
+    - Er zijn geen instellingen die gewijzigd hoeven te worden.
 
-X: webapp
+2. Build de Redis container
+    - Tag de de container met pageviews-redis
+
+3. Als de build klaar is controleer dat je image aanwezig is.
+
+
+
+4: Webapp
 ---------
 
+1. Voeg aan de Dockerfile van de webapp het volgende toe:
+    - Kopieer de `src` directory in de container naar `/home/flask/app/web`
+    - De webapp moet beschikbaar zijn op poort 8000
 
-X: start de containers
+2. Build de webapp container
+    - Tag de de container met pageviews-webapp
+
+3. Als de build klaar is controleer dat je image aanwezig is.
+
+
+5: Start de containers
 ----------------------
 
-Als je tegen problemen aanloopt tijdens het uitvoeren van de volgende stappen kijk dan naar de tips in deel 5.
+Als je tegen problemen aanloopt tijdens het uitvoeren van de volgende stappen kijk dan naar de tips in deel 6.
 
 1. Vanaf de command-line voer je het volgende uit.
 
@@ -86,10 +95,8 @@ Als je tegen problemen aanloopt tijdens het uitvoeren van de volgende stappen ki
    docker container list
    ```
 
-   Draait je container niet? Zie deel X.
 
-
-X: Debugging container
+6: Debugging container
 ----------------------
 
 Is je container niet goed opgestart? Dan vind je hier stappen om dit te onderzoeken.
@@ -108,8 +115,8 @@ Is je container niet goed opgestart? Dan vind je hier stappen om dit te onderzoe
 6. Als je genoeg gezien hebt, gebruik dan CNTRL-C om terug te gaan naar je host's terminal.
 
 
-X: Stop en verwijder de containers
----------------------------------
+7: Stop en verwijder de containers
+----------------------------------
 
 Je kunt alle containers in een commando stoppen door het volgende te doen.
 
