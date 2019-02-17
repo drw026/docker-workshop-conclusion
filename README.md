@@ -6,46 +6,35 @@ Welkom bij de Docker workshop.
 TODO
 =========
 - Automatiseren aanmaken van omgevingen op AWS
-    - Omgevingen opzetten voor deelnemers
-    - Documenteren hoe deelnemers kunnen verbinden met hun omgeving
+    - TODO - Omgevingen opzetten voor deelnemers
+    - TODO - Documenteren hoe deelnemers kunnen verbinden met hun omgeving
 - 00-Installatie
-    - DONE - Documentatie voor het installeren van Docker CE
-    - Eventueel installatie van awscli (eventueel vooraf al installeren)
+    - DONE
 - 01-Hello-World
-    - DONE - Eerste container (docker pull nginx, docker run)
-    - DONE - Controle van het resultaat, zodat de deelnemers beter bekend raken met de docker commando's
-    - DONE - Documentatie voor de deelnemers
+    - DONE
+    - DONE - Documentatie
 - 02-Hello-Docker
-    - DONE - Maken van een node app met een Docker file
-    - DONE - Source code https://nodejs.org/en/about/
-    - DONE - build van de app en run van de app
-    - DONE - Aanpassen source code, zodat de container "Hello World" output
-    - DONE - Build van de nieuwe app
-    - DONE - Stop de oude app en run de nieuwe app
-- 03-multi-stage-build
-    - DONE - Maken van een react applicatie middels een multi-stage build
-    - DONE - Documentatie over de react app
-- 04-multi-stage-build-2
-    - Done - Maken van een dotnet core multi-stage build app
-    - Done - Documentatie over de app
+    - DONE
+    - DONE - Documentatie
+- 03-multi-stage-build-react
+    - DONE
+    - DONE - Documentatie 
+- 04-multi-stage-build-dotnet
+    - DONE
+    - DONE - Documentatie over de app
 - 05-volumes
-    - Done - Gebruik maken van een volume
-    - Done - Documentatie
-- 06-microservices-app
-    - Opties
-        - 3. https://github.com/robrich/docker-hands-on-workshop/tree/master/06-A-bigger-site
-        - 2. https://dwmkerr.com/learn-docker-by-building-a-microservice/
-        - 1. https://dzone.com/articles/microservices-an-example-with-docker-go-and-mongod
-
-        - 4. https://www.linode.com/docs/applications/containers/deploying-microservices-with-docker/
-    - Documentatie
-- 07-LAMP-stack
+    - DONE
+    - DONE - Documentatie
+- 06-microservices-cinema
+    - DONE
+    - WIP - Documentatie
+- 07-microservices-page-views
+    - DONE
+    - DONE - Documentatie
+- 08-app-on-AWS
     - TODO
     - Documentatie
-- 08-APP-on-AWS
-    - TODO
-    - Documentatie
-- 09-LAMP-on-AWS
+- 09-app-on-AWS
     - TODO
     - Documentatie
 - 10-Free-for-all
@@ -66,8 +55,8 @@ Alternatief
 
 Je kunt de repository clonen naar de laptop en de code met SCP of WinSCP uploaden naar je EC2 instance.
 
-Artikels
---------
+Bronnen
+-------
 
 - http://training.play-with-docker.com/
 - http://labs.play-with-docker.com/
