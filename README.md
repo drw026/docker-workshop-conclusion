@@ -21,7 +21,7 @@ TODO
     - DONE - Documentatie 
 - 04-multi-stage-build-dotnet
     - DONE
-    - DONE - Documentatie over de app
+    - DONE - Documentatie
 - 05-volumes
     - DONE
     - DONE - Documentatie
@@ -54,6 +54,11 @@ Alternatief
 -----------
 
 Je kunt de repository clonen naar de laptop en de code met SCP of WinSCP uploaden naar je EC2 instance.
+
+Opdrachten
+----------
+
+Er zijn een aantal opdrachten. Deze opdrachten hebben een start en done directory. Iedere start directory heeft een README.md met instructies. In de done directory is de opdracht volledig uitgewerkt.
 
 Bronnen
 -------
