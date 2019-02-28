@@ -244,3 +244,5 @@ Anders stop je de containers per container.
 5. `docker container rm ...` vervang `...` met de `CONTAINER ID` of `NAMES` uit de vorige stap. Hiermee verwijder je de container.
 
 6. `docker image list`.  -- De image bestaat nog steeds. De container die we gemaakt hebben op basis van de image is weg.
+
+***TIP:*** In de `done` directory staat een `Makefile` deze heeft een aantal funties onder andere een cleanup. Deze kun je uitvoeren door `make cleanup` uit te voeren.
