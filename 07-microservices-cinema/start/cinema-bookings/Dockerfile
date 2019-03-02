@@ -1,8 +1,7 @@
 # golang image where workspace (GOPATH) configured at /go.
 FROM golang:1.11.2
 
-LABEL traefik.backend=bookings
-LABEL traefik.frontend.rule=Host:bookings.local
+# LABEL
 
 # Install dependencies
 RUN go get gopkg.in/mgo.v2
