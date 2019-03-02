@@ -8,7 +8,7 @@ Setup
 
 1. Open een terminal in de `04-Volumes/start` directory.
 
-3. Build de container: `docker build -t volumetest:0.1 .`
+2. Build de container: `docker build -t volumetest:0.1 .`
 
 
 Het probleem
@@ -22,7 +22,7 @@ Het probleem
 
 4. Klik op [See files](http://localhost:3000/files) en zie het bestand die je zojuist geupload hebt.
 
-5. Stop de container met `docker container list` en `docker container stop ...` vervange de `...` met de container naam of id.
+5. Stop de container met `docker container list` en `docker container stop ...` vervang de `...` met de container naam of id.
 
 6. Verwijder de container met `docker container rm ...` en vervang de `...` met de container naam of id. 
 
@@ -30,7 +30,7 @@ Het probleem
 
 8. Klik op [See files](http://localhost:3000/files).
 
-De eerste container is verwijderd en in de nieuwe container is het bestande wat je geupload hebt weg.
+De eerste container is verwijderd en in de nieuwe container is het bestand wat je geupload hebt weg.
 
 In de meeste gevallen is dit wat je wilt namelijk een geisoleerde omgeving waar binnen niks wijzigt en die je kan verwijderen en ergens anders opnieuw kan starten. In dit geval willen juist wel de data opslaan, dus laten we gaan experimenteren met volumes.
 
@@ -42,7 +42,7 @@ De oplossing
 
 1. Open de `Dockerfile`
 
-2. Voeg de volgende regel toe `VOLUME ["/app/public"]` onder de `EXPOSE` regel. (technisch gezien kun je de regel ook ergens ander toevoegen)
+2. Voeg de volgende regel toe `VOLUME ["/app/public"]` onder de `EXPOSE` regel. (technisch gezien kun je de regel ook ergens anders toevoegen)
 
 3. Build de container `docker build -t volumetest:0.2`. 
 Merk op dat de `npm init` niet opnieuw gedaan is. Caching!

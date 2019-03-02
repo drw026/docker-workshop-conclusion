@@ -1,7 +1,7 @@
 Hello Docker
 ============
 
-We gaan onze eerste container maken.
+We gaan oweer een container maken, maar je maakt zelf een dockerfile, zodat je de container kan builden.
 
 
 1: Maak de app
@@ -121,7 +121,7 @@ Als je tegen problemen aanloopt tijdens het uitvoeren van de volgende stappen ki
 5: Debugging container
 ----------------------
 
-Is je container niet goed opgestart in deel 4? Dan vind je hier stappen om dit te onderzoeken.
+Is je container niet goed opgestart in deel 4? Dan vind je hier stappen om te onderzoeken waarom de container niet op start.
 
 1. `docker container list --all`.  Dit laat alle draaiende en niet draaiende containers zien.
 

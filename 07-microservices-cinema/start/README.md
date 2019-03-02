@@ -22,15 +22,15 @@ movies.local bookings.local users.local showtimes.local monitor.local
 1: Traefik
 ----------
 
-1. Maak een Traefik loadbalancer container aan de hand van de volgende voorwaarden.
-    - Maak een Dockerfile voor de Traefik loadbalancer
+1. Maak een Traefik loadbalancer container aan de hand van de volgende voorwaarden:
+    - Maak een Dockerfile voor de Traefik loadbalancer.
     - Gebruik de alpine versie voor de image. 
     - Zorg dat de `src/traefik.toml` gekopieerd wordt in de container naar `/etc/traefik/traefik.toml`. 
-    - Traefik moet beschikbaar zijn op poort 80
-    - Traefik dashboard moet beschikbaar zijn op poort 8080
+    - Traefik moet beschikbaar zijn op poort 80.
+    - Traefik dashboard moet beschikbaar zijn op poort 8080.
 
-2. Build de traefik container
-    - Tag de de container met cinema-traefik
+2. Build de traefik container:
+    - Tag de de container met cinema-traefik.
 
 3. Als de build klaar is controleer dat je image aanwezig is.
 
@@ -40,21 +40,19 @@ movies.local bookings.local users.local showtimes.local monitor.local
    docker run --name cinema-traefik -d -p 8080:8080 -p 80:80 -v /var/run/docker.sock:/var/run/docker.sock cinema-traefik
    ```
 
-We doen voor de Traefik container de docker socket van de host koppelen met de docker socket van de traefik container. 
-Door worden de API containers automatisch toegevoegd aan de Traefik loadbalancer.
+We koppelen voor de Traefik container de docker socket van de host met de docker socket van de traefik container. 
+Hierdoor worden de API containers automatisch toegevoegd aan de Traefik loadbalancer.
 
 
 2: MongoDB
 ----------
 
-1. Maak een MongoDB database container
+1. Build de MongoDB container.
+    - Tag de de container met cinema-mongo.
 
-2. Build de MongoDB container
-    - Tag de de container met cinema-mongo
+2. Als de build klaar is, controleer dat de image aanwezig is.
 
-3. Als de build klaar is, controleer dat je image aanwezig is.
-
-4. Start de MongoDB container
+3. Start de MongoDB container.
 
    ```
    docker run --name db -d db 
@@ -65,61 +63,69 @@ Door worden de API containers automatisch toegevoegd aan de Traefik loadbalancer
 3: API - bookings
 -----------------
 
-1. Maak een Dockerfile voor bookings
-`LABEL traefik.backend=bookings`
-`LABEL traefik.frontend.rule=Host:bookings.local`
+1. Pas de Dockerfile aan voor de bookings API en voeg de volgende labels toe:
+   `LABEL traefik.backend=bookings`
+   `LABEL traefik.frontend.rule=Host:bookings.local`
 
-2. Build de bookings container
-    - Tag de de container met cinema-bookings
+Met de labels geven we aan hoe de API toevoegd aan de loadbalancer. De traefik frontend luistert op `bookings.local` en koppelt dit met de booking container als backend.
 
-3. Als de build klaar is controleer dat je image aanwezig is.
+2. Build de bookings container.
+    - Tag de de container met cinema-bookings.
 
-4. Start de booking container
+3. Als de build klaar is controleer dat de image aanwezig is.
+
+4. Start de booking container.
 
 
 4: API - movies
 ---------------
 
-1. Maak een Dockerfile voor movies
-`LABEL traefik.backend=movies`
-`LABEL traefik.frontend.rule=Host:movies.local`
+1. Pas de Dockerfile aan voor de movies API en voeg de volgende labels toe:
+   `LABEL traefik.backend=movies`
+   `LABEL traefik.frontend.rule=Host:movies.local`
 
-2. Build de movies container
-    - Tag de de container met cinema-movies
+Met de labels geven we aan hoe de API toevoegd aan de loadbalancer. De traefik frontend luistert op `movies.local` en koppelt dit met de movies container als backend.
 
-3. Als de build klaar is controleer dat je image aanwezig is.
+2. Build de movies container.
+    - Tag de de container met cinema-movies.
 
-4. Start de movies container
+3. Als de build klaar is controleer dat de image aanwezig is.
+
+4. Start de movies container.
 
 
 5: API - showtimes
 ------------------
 
-1. Maak een Dockerfile voor showtimes
-`LABEL traefik.backend=showtimes`
-`LABEL traefik.frontend.rule=Host:showtimes.local`
+1. Pas de Dockerfile aan voor de showtimes API en voeg de volgende labels toe:
+   `LABEL traefik.backend=showtimes`
+   `LABEL traefik.frontend.rule=Host:showtimes.local`
 
-2. Build de showtimes container
-    - Tag de de container met cinema-showtimes
+Met de labels geven we aan hoe de API toevoegd aan de loadbalancer. De traefik frontend luistert op `showtimes.local` en koppelt dit met de showtimes container als backend.
 
-3. Als de build klaar is controleer dat je image aanwezig is.
+2. Build de showtimes container.
+    - Tag de de container met cinema-showtimes.
 
-4. Start de showtimes container
+3. Als de build klaar is controleer dat de image aanwezig is.
+
+4. Start de showtimes container.
 
 
 6: API - users
 --------------
 
-1. Maak een Dockerfile voor users
-`LABEL traefik.backend=users`
-`LABEL traefik.frontend.rule=Host:users.local`
+1. Pas de Dockerfile aan voor de users API en voeg de volgende labels toe:
+   `LABEL traefik.backend=users`
+   `LABEL traefik.frontend.rule=Host:users.local`
 
-2. Build de users container
-    - Tag de de container met cinema-users
+Met de labels geven we aan hoe de API toevoegd aan de loadbalancer. De traefik frontend luistert op `users.local` en koppelt dit met de users container als backend.   
 
-3. Als de build klaar is controleer dat je image aanwezig is.
+2. Build de users container.
+    - Tag de de container met cinema-users.
 
-4. Start de users container
+3. Als de build klaar is controleer dat de image aanwezig is.
+
+4. Start de users container.
 
 
 7: Start de containers
@@ -127,7 +133,7 @@ Door worden de API containers automatisch toegevoegd aan de Traefik loadbalancer
 
 Als je tegen problemen aanloopt tijdens het uitvoeren van de volgende stappen kijk dan naar de tips in deel 8.
 
-1. Vanaf de command-line voer je het volgende uit.
+1. Vanaf de command-line voer je het volgende uit:
 
    ```
    docker run --name cinema-traefik -d -p 8080:8080 -p 80:80 -v /var/run/docker.sock:/var/run/docker.sock cinema-traefik

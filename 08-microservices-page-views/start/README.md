@@ -2,7 +2,7 @@ Microservices - Page Views
 ==========================
 
 In deze opdracht gaan we een mircoservices applicatie maken die bij houdt hoe vaak de webpagina bezocht is.
-De applicatie bestaat uit vier onderdelen
+De applicatie bestaat uit vier onderdelen:
     - [PostgreSQL](https://www.postgresql.org/)
     - [Redis](https://redis.io/)
     - [Flask](http://flask.pocoo.org/)
@@ -13,13 +13,13 @@ De applicatie bestaat uit vier onderdelen
 1: NGINX
 --------
 
-1. Maak een NGINX webserver container aan de hand van de volgende voorwaarden.
+1. Maak een NGINX webserver container aan de hand van de volgende voorwaarden:
     - Maak een Dockerfile voor de NGINX websever.  
     - Zorg dat de `src/nginx.conf` gekopieerd wordt in de container. 
-    - NGINX moet beschikbaar zijn op poort 80
+    - NGINX moet beschikbaar zijn op poort 80.
 
-2. Build de NGINX container
-    - Tag de de container met pageviews-nginx
+2. Build de NGINX container.
+    - Tag de de container met pageviews-nginx.
 
 3. Als de build klaar is controleer dat je image aanwezig is.
 
@@ -27,17 +27,17 @@ De applicatie bestaat uit vier onderdelen
 2: PostgreSQL
 -------------
 
-1. Maak een PostgreSQL database container
-    - Maak een Dockerfile voor de PostgreSQL database server
-    - Maak de volgende environment(ENV) variablen aan:
+1. Maak een PostgreSQL database container:
+    - Maak een Dockerfile voor de PostgreSQL database server.
+    - Maak de volgende environment(ENV) variabelen aan:
         - POSTGRES_USER=postgres
         - POSTGRES_PASSWORD=dbPageViews
         - POSTGRES_DB=dbPageViews
     - Zorg dat de `src/init.sh` gekopieerd wordt in de contianer naar `/docker-entrypoint-initdb.d`
-    - PostgreSQL moet beschikbaar zijn op poort 5432
+    - PostgreSQL moet beschikbaar zijn op poort 5432.
 
-2. Build de PostgreSQL container
-    - Tag de de container met pageviews-postgres
+2. Build de PostgreSQL container.
+    - Tag de de container met pageviews-postgres.
 
 3. Als de build klaar is, controleer dat je image aanwezig is.
 
@@ -45,11 +45,11 @@ De applicatie bestaat uit vier onderdelen
 3: Redis
 --------
 
-1. Maak een Dockerfile voor Redis
+1. Maak een Dockerfile voor Redis.
     - Er zijn geen instellingen die gewijzigd hoeven te worden.
 
-2. Build de Redis container
-    - Tag de de container met pageviews-redis
+2. Build de Redis container.
+    - Tag de de container met pageviews-redis.
 
 3. Als de build klaar is controleer dat je image aanwezig is.
 
@@ -59,11 +59,11 @@ De applicatie bestaat uit vier onderdelen
 ---------
 
 1. Voeg aan de Dockerfile van de webapp het volgende toe:
-    - Kopieer de `src` directory in de container naar `/home/flask/app/web`
-    - De webapp moet beschikbaar zijn op poort 8000
+    - Kopieer de `src` directory in de container naar `/home/flask/app/web`.
+    - De webapp moet beschikbaar zijn op poort 8000.
 
-2. Build de webapp container
-    - Tag de de container met pageviews-webapp
+2. Build de webapp container.
+    - Tag de de container met pageviews-webapp.
 
 3. Als de build klaar is controleer dat je image aanwezig is.
 
@@ -73,7 +73,7 @@ De applicatie bestaat uit vier onderdelen
 
 Als je tegen problemen aanloopt tijdens het uitvoeren van de volgende stappen kijk dan naar de tips in deel 6.
 
-1. Vanaf de command-line voer je het volgende uit.
+1. Vanaf de command-line voer je het volgende uit:
 
    ```
    docker run --name pageviews-postgres -d pageviews-postgres 
@@ -82,7 +82,7 @@ Als je tegen problemen aanloopt tijdens het uitvoeren van de volgende stappen ki
    docker run --name pageviews-nginx --link pageviews-webapp -p 80:80 -d pageviews-nginx
    ```
 
-2. Roep met curl de url aan [http://localhost](http://localhost).  Success!
+2. Roep met curl de url aan [http://localhost](http://localhost).
    
    ```
    curl http://localhost

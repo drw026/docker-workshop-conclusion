@@ -2,7 +2,7 @@ Multi-stage Build met React
 ============================
 
 In de vorige opdracht hebben we direct de source-code in onze container gekopieerd. In deze opdracht gaan we eerst builden en deployen we de gemaakte artifacts.
-Door gebruikt te maken van multi-stage builds kunnen we de uit eindelijke container klein houden, omdat we de build tools en source-code niet deployen.
+Door gebruik te maken van multi-stage builds kunnen we de uit eindelijke container klein houden, omdat we de build tools en source-code niet deployen.
 
 
 1: Maken van de Dockerfile
@@ -10,7 +10,7 @@ Door gebruikt te maken van multi-stage builds kunnen we de uit eindelijke contai
 
 1. Maak een nieuw bestand in de `src` directory en noem het `Dockerfile`
 
-2. Voeg de volgende regel toe
+2. Voeg de volgende regel toe:
 
    ```
    FROM node:alpine
@@ -95,9 +95,9 @@ Door gebruikt te maken van multi-stage builds kunnen we de uit eindelijke contai
    docker build --tag hello-react:0.1 .
    ```
 
-   Hiermee maak je een image op basis van de Dockerfile en tag je image met de naam `hello-react` en versie `0.1`.
+   Hiermee maak je een image op basis van de Dockerfile en tag je de image met de naam `hello-react` en versie `0.1`.
 
-2. Als de build klaar is. Controleer je dat je image aanwezig is.
+2. Als de build klaar is. Controleer je dat de image aanwezig is.
 
    ```
    docker image list
@@ -218,7 +218,7 @@ Open dan de volgende url ```curl localhost:3001```
    ```
    Hiermee maak je een image op basis van de Dockerfile en tag je de image met de naam `hello-react` en versie `0.2`.
 
-2. Als de build klaar is. Controleer je dat je image aanwezig is.
+2. Als de build klaar is. Controleer je of de image aanwezig is.
 
    ```
    docker image list

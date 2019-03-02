@@ -10,7 +10,7 @@ Door gebruik te maken van een multi-stage build houden we de container klein.
 
 1. Maak een nieuw bestand in de `src` directory en noem het `Dockerfile`
 
-2. Voeg de volgende regel toe
+2. Voeg de volgende regel toe:
 
    ```
    FROM microsoft/dotnet:2.1-sdk-alpine
@@ -43,7 +43,7 @@ Door gebruik te maken van een multi-stage build houden we de container klein.
 
    Hiermee download je de voor de NuGet package repository.
 
-   We kopieeren het manifest als eert, zodat we optimaal gebruik kunnen maken van de Docker layer caching. Wanneer we de source code van de applicatie aanpassen en de image opnieuw builden worden de libraries niet opnieuw gedownload.
+   We kopieeren het manifest als eerst, zodat we optimaal gebruik kunnen maken van de Docker layer caching. Wanneer we de source code van de applicatie aanpassen en de image opnieuw builden worden de libraries niet opnieuw gedownload.
 
 6. Voeg de volgende regel toe:
 
@@ -106,7 +106,7 @@ Door gebruik te maken van een multi-stage build houden we de container klein.
 
    Hiermee maak je een image op basis van de Dockerfile en tag je image met de naam `hello-dotnet` en versie `0.1`.
    
-2. Als de build klaar is. Controleer je dat je image aanwezig is.
+2. Als de build klaar is. Controleer je od de image aanwezig is.
 
    ```
    docker image list
@@ -166,7 +166,7 @@ Open dan de volgende url ```curl localhost:5001```
 5: Stop en verwijder de container
 ---------------------------------
 
-1. `docker container list --all` -- Zie alle container beide gestop en gestart. Let op `CONTAINER ID` en `NAMES` van de running container.
+1. `docker container list --all` -- Zie alle containers beide gestopt en gestart. Let op `CONTAINER ID` en `NAMES` van de running containers.
 
 2. `docker container rm -f ...` vervang `...` met de `CONTAINER ID` of `NAMES` uit de vorige stap. Hiermee stop en verwijder je de container.
 
@@ -218,7 +218,7 @@ Open dan de volgende url ```curl localhost:5001```
 
    Hiermee maak je een image op basis van de Dockerfile en tag je de image met de naam `hello-dotnet` en versie `0.2`.
 
-2. Als de build klaar is. Controleer je dat je image aanwezig is.
+2. Als de build klaar is. Controleer je dat de image aanwezig is.
 
    ```
    docker image list
@@ -234,7 +234,7 @@ Open dan de volgende url ```curl localhost:5001```
    docker run --name hello-dotnet -p 5000:5000 -d hello-dotnet:0.2
    ```
 
-2. Open met je browser [http://localhost:5000](http://localhost:5000).  Success!
+2. Open met je browser [http://localhost:5000](http://localhost:5000).  
 
 3. Controleer de huidig draaiende container.
 

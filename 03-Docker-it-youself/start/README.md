@@ -25,5 +25,5 @@ Voor deze opdracht ga je een PHP applicatie maken.
 
    ```
    curl localhost
-   Hoi. De datum van vandaag is: Thursday the 28th.
+   Hoi. De datum van vandaag is: Thursday the 21th.
    ```

@@ -6,7 +6,7 @@ Installatie Docker CE on AWS EC2
 
 ### Linux
 
-Volg de installing docker instructies.
+Volg de installing docker instructies via de volgende link:
 
 - [https://docs.aws.amazon.com/AmazonECS/latest/developerguide/docker-basics.html#install_docker](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/docker-basics.html#install_docker)
 
@@ -23,10 +23,10 @@ Vanaf de command-line:
 Als beide werken dan is je docker omgeving correct opgezet.
 
 
-Start downloading docker images
+Start downloaden docker images
 -------------------------------
 
-Downloading docker images takes a while, so let's kick this off so we make sure they exist when we need them:
+Het downloaden van docker images neemt wat tijd in beslag, dus start met downloaden, zodat deze beschikbaar zijn zodra je ze nodig hebt:
 
 1. `docker pull nginx`
 2. `docker pull node:alpine`

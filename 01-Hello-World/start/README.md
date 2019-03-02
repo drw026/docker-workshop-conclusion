@@ -1,7 +1,7 @@
 Hello World
 ===========
 
-We gaan onze eerste container draaien.
+Als eerste gaan we de eerste container draaien, zodat we bekend raken met wat basis docker commando's. Er is een bonus opdracht die laat zien hoe je met docker snel kunt ontwikkelen.
 
 1: Start een nginx container
 ---------------------------
@@ -28,13 +28,15 @@ Hiermee wordt de image `nginx`, versie `latest` als container gestart. `-p` NAT 
    ```
    docker container list
    ```
-4. Voer het volgende commando uit
+4. Voer het volgende commando uit.
 
    ``` 
    docker image list
    ```
 
-5. Stop de container
+De Nginx image staat in de lijst.
+
+5. Stop de container met het volgende commando:
 
    ```
    docker container stop ... 
@@ -50,10 +52,10 @@ Hiermee wordt de image `nginx`, versie `latest` als container gestart. `-p` NAT 
 
 
 
-Bonus - Volumes
-===============
+Bonusopdracht
+=============
 
-Met volumes kun je sneller te ontwikkelen, omdat je een volume van je systeem koppelt met je container. Wanneer je dan een bestand aanpast en opslaat kun het resultaat direct bekijken zonder dat je de container moet rebuilden.
+Het Volumes stuk komt later uitgebreid aan bod, maar in deze opdracht gaan we alvast laten zien hoe je een volume kan gebruiken om snel te ontwikkelen. Met volumes kun je namelijk sneller ontwikkelen, omdat je een volume van je systeem koppelt met je container. Wanneer je dan een bestand aanpast en opslaat kun het resultaat direct bekijken zonder dat je de container moet rebuilden.
 
 Draai een prebuild nginx container
 ----------------------------------
@@ -72,9 +74,9 @@ Draai een prebuild nginx container
    curl localhost:8080
    ```
    
-   Of open met een browser.
+   Of open de link met een browser.
    
-   In plaats van de welkomst text van nginx krijg je nu een 404 of 403, omdat de webserver nog geen bestanden heeft om te serveren.
+   In plaats van de welkomst text van nginx krijg je nu een status 404 of status 403, omdat de webserver nog geen bestanden heeft om te serveren.
 
 Edit files
 ----------
@@ -89,7 +91,7 @@ Edit files
 
 4. Browse browse naar de url(s).
 
-Doormiddel van het volume kun je snel ontwikkelen zonder dat je de container opnieuw hoeft het rebuilden. Dit is ideaal voor een development omgeving.
+Door middel van het volume kun je snel ontwikkelen zonder dat je de container opnieuw hoeft het rebuilden. Dit is ideaal voor een development omgeving.
 Voor een productie omgeving zou dit nog niet werken, want dan zou je lege image hebben.
 
 Laten we dit oplossen!
