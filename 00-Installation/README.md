@@ -22,6 +22,13 @@ Vanaf de command-line:
 
 Als beide werken dan is je docker omgeving correct opgezet.
 
+Installatie Docker Compose
+--------------------------
+
+Volg de Install Compose on Linux systems via de volgende link:
+
+- [https://docs.docker.com/compose/install/] (https://docs.docker.com/compose/install/)
+
 
 Start downloaden docker images
 -------------------------------

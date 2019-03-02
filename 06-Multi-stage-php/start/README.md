@@ -13,7 +13,7 @@ De applicatie is een PHP applicatie en jij moet er voor zorgen dat de Dockerfile
 1. Open de Dockerfile en vul de Dockerfile aan.
 
 2. Build de container.
-    - Tag de de container met `ms-php`
+    - Tag de container met `ms-php`
 
 3. Als de build klaar is controleer dat je image aanwezig is.
 
