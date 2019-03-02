@@ -53,7 +53,7 @@ Je gaat een Docker compose bestand maken.
        - "5000"
     ```
 
-    Hier wordt alleen een interne poort aangegeven. De backend wordt niet gepubliceerd voor de buiten wereld alleen de containers in de lijst.
+    Hier wordt alleen een interne poort aangegeven. De backend wordt niet gepubliceerd voor de buiten wereld, de containers in de lijst wel.
 
 7. In het volgende deel definieren we de frontend container.
 
@@ -115,4 +115,3 @@ Je gaat een Docker compose bestand maken.
     ```
 
     Als je de container stopt zonder `docker-compose` te gebruiken zal Docker-composer automatisch weer een nieuwe container starten, omdat de applicatie zoals gedefinieerd in de docker-compose.yaml niet compleet is.
-    
