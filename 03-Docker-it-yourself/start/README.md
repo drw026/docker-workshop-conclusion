@@ -1,5 +1,5 @@
-Docker it youself
-=================
+Docker it yourself
+==================
 
 In deze opdracht ga je toepassen wat je in de vorige opdrachten geleerd hebt. Je kunt altijd even spieken in de `done` map mocht je er niet uitkomen.
 

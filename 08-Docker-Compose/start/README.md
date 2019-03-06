@@ -2,7 +2,7 @@ Docker Compose
 ==============
 
 Met Docker compose kun je meerdere containers samen laten draaien. 
-In de `docker-compose.yml` specificeer je voor iderde container de `docker build` en de `docker run` parameters. 
+In de `docker-compose.yml` specificeer je voor iedere container de `docker build` en de `docker run` parameters. 
 
 
 Docker compose
