@@ -1,7 +1,7 @@
 Hello Docker
 ============
 
-We gaan oweer een container maken, maar je maakt zelf een dockerfile, zodat je de container kan builden.
+We gaan weer een container maken, maar je maakt zelf een dockerfile, zodat je de container kan builden.
 
 
 1: Maak de app
