@@ -24,6 +24,8 @@ Opdrachten
 ----------
 
 Er zijn een aantal opdrachten beschikbaar. Deze opdrachten hebben een allen een start en done directory. Iedere start directory heeft een README.md met instructies. In de done directory is de opdracht volledig uitgewerkt, deze kun je raadplegen indien nodig.
+Verder is er in de done directory een `Makefile` waarmee je de applicatie voor die opdracht kan builden, starten en je omgeving kunt opschonen. 
+Meer info kun je vinden door het commando ```make info``` uit te voeren.
 
 Bronnen
 -------

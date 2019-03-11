@@ -19,6 +19,8 @@ commands:
 	@echo "-------                      -----------"
 	@echo "make info                    Show the available make commands"
 	@echo "make build                   Build all containers to run the application"
+	@echo "make start                   Start the containers to run the application"
+	@echo "make cleanup                 Cleanup the stopped and running containers and container images"
 	@echo ""
 
 build: build-containers

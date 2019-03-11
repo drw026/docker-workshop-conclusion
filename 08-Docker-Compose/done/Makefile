@@ -30,8 +30,8 @@ cleanup: containers-cleanup
 build-containers: intro containers-prepare outro
 
 containers-prepare:
-	@echo "=== Building all containers ==="
-	./scripts/build.sh
+	@echo "=== Calling start because docker-compose executes build automatically ==="
+	make start 
 
 containers-start:
 	@echo "=== Starting all conatiners ==="

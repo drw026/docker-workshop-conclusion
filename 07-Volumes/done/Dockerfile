@@ -2,10 +2,10 @@ FROM node:alpine
 
 WORKDIR /app
 
-COPY package.json /app
+COPY src/package.json /app
 RUN npm install
 
-COPY . /app
+COPY src /app
 
 EXPOSE 3000
 VOLUME ["/app/public"]
