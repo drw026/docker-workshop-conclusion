@@ -10,4 +10,5 @@ if [ $RMI == true ]; then
     docker rmi -f $(docker images -aq)
 else
     docker rm -f $(docker ps -aq)
+    docker image prune -f
 fi

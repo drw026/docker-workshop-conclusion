@@ -20,7 +20,8 @@ Hiermee wordt de image `nginx`, versie `latest` als container gestart. `-p` NAT 
    curl localhost
    ```
    
-   Of open met een browser.
+   Of open met een browser `http://<ec2-instance>`.
+
    Als de continer goed opgestart is dan zie je de `Welcome to nginx!` pagina.
 
 3. Zie de huidig draaiende container.
@@ -50,12 +51,10 @@ De Nginx image staat in de lijst.
    ```
    De image bestaat nog steeds. De container die we gemaakt hebben op basis van de image is weg.
 
-
-
 Bonusopdracht
 =============
 
-Het Volumes stuk komt later uitgebreid aan bod, maar in deze opdracht gaan we alvast laten zien hoe je een volume kan gebruiken om snel te ontwikkelen. Met volumes kun je namelijk sneller ontwikkelen, omdat je een volume van je systeem koppelt met je container. Wanneer je dan een bestand aanpast en opslaat kun het resultaat direct bekijken zonder dat je de container moet rebuilden.
+Het Volume stuk komt later uitgebreid aan bod, maar in de bonus opdracht gaan we alvast laten zien hoe je een volume kan gebruiken om snel te ontwikkelen. Met volumes kun je namelijk sneller ontwikkelen, omdat je een volume van je systeem koppelt met je container. Wanneer je dan een bestand aanpast en opslaat kun het resultaat direct bekijken zonder dat je de container moet rebuilden.
 
 Draai een prebuild nginx container
 ----------------------------------
@@ -64,9 +63,13 @@ Draai een prebuild nginx container
 
 2. Maak een directory in de start directory aan bijvoorbeeld `src`. 
 
-3. `docker run -v /pad/naar/start/src:/usr/share/nginx/html -p 8080:80 -d nginx:alpine` vervang `/pad/naar/start/src` met de directory uit stap 2. Voorbeeld: als je in stap 2 /home/ec2-user/docker-workshop/01-Hello-World/start/src hebt aangemaakt, dan start je de container als volgt `docker run -v ~/docker-workshop/01-Hello-World/start/src:/usr/share/nginx/html -p 8080:80 -d nginx:alpine`.
+3. `docker run -v /pad/naar/start/src:/usr/share/nginx/html -p 8080:80 -d nginx:alpine` vervang `/pad/naar/start/src` met de directory uit stap 2.
 
-   Hiermee wordt een container opgestart op basis van de nginx alpine image met een mapping van de directory naar die van de container en poort `8080` wordt geNAT van buiten de container naar poort `80` van de container. 
+Voorbeeld: als je in stap 2 `/home/ec2-user/docker-workshop/01-Hello-World/start/src` hebt aangemaakt, dan start je de container als volgt 
+
+`docker run -v ~/docker-workshop/01-Hello-World/start/src:/usr/share/nginx/html -p 8080:80 -d nginx:alpine`.
+
+Hiermee wordt een container opgestart op basis van de nginx alpine image met een mapping van `~/docker-workshop/01-Hello-World/start/src` naar `/usr/share/nginx/html` in de container. Poort `8080` wordt geNAT van buiten de container naar poort `80` van de container. 
 
 4. Browse naar [http://localhost:8080](http://localhost:8080).
 
@@ -74,7 +77,7 @@ Draai een prebuild nginx container
    curl localhost:8080
    ```
    
-   Of open de link met een browser.
+   Of open met een browser `http://<ec2-instance>`.
    
    In plaats van de welkomst text van nginx krijg je nu een status 404 of status 403, omdat de webserver nog geen bestanden heeft om te serveren.
 
@@ -85,14 +88,16 @@ Edit files
 
 2. Browse naar de url -- [http://localhost:8080/hello.html](http://localhost:8080/hello.html).
 
-   Wanneer je naar http://localhost:8080/ gaat zal nginx eerst kijken of er een index.html is. Als die er niet is krijg een 403. Browse in dat geval direct naar het bestand wat je hebt aangemaakt.
+   Of open met een browser `http://<ec2-instance>:8080/hello.html`.
+
+   Nginx eerst kijken of er een index.html is. Als die er niet is krijg je een HTTP status 403. Browse in dat geval direct naar het bestand wat je hebt aangemaakt.
    
 3. Wijzig de bestanden.
 
 4. Browse browse naar de url(s).
 
-Door middel van het volume kun je snel ontwikkelen zonder dat je de container opnieuw hoeft het rebuilden. Dit is ideaal voor een development omgeving.
-Voor een productie omgeving zou dit nog niet werken, want dan zou je lege image hebben.
+Door middel van het volume kun je snel ontwikkelen zonder dat je de container opnieuw hoeft te rebuilden. Dit is ideaal voor een development omgeving.
+Voor een productie omgeving zou dit niet werken, want dan zou je lege image hebben.
 
 Laten we dit oplossen!
 
@@ -121,5 +126,7 @@ Maak een Dockerfile
    ```
 
 4. Browse naar de url -- [http://localhost:8080/hello.html](http://localhost:8080/hello.html).
+
+    Of open met een browser `http://<ec2-instance>:8080/hello.html`.
 
 We hebben nu twee docker images -- een voor development waar we de nginx alpine gebruiken en een volume koppelen en een voor productie die je zelf build.

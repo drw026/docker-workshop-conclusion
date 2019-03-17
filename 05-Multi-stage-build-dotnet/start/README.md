@@ -2,13 +2,14 @@ Multi-stage Build met .NET Core
 ================================
 
 In .NET Core hanteren we hetzelfde principe van een builden en daarna deployen van de artifacts. 
+
 Door gebruik te maken van een multi-stage build houden we de container klein.
 
 
 1: Maken van de Dockerfile
 --------------------------
 
-1. Maak een nieuw bestand in de `src` directory en noem het `Dockerfile`
+1. Maak een nieuwe `Dockerfile` in de `src` directory.
 
 2. Voeg de volgende regel toe:
 
@@ -41,7 +42,7 @@ Door gebruik te maken van een multi-stage build houden we de container klein.
    RUN dotnet restore MultiStage.csproj
    ```
 
-   Hiermee download je de voor de NuGet package repository.
+   Hiermee download je libraries van de NuGet de package repository.
 
    We kopieeren het manifest als eerst, zodat we optimaal gebruik kunnen maken van de Docker layer caching. Wanneer we de source code van de applicatie aanpassen en de image opnieuw builden worden de libraries niet opnieuw gedownload.
 
@@ -53,7 +54,7 @@ Door gebruik te maken van een multi-stage build houden we de container klein.
 
    Deze regel kopieert de rest van de bestanden in je huidige directory naar de huidige directory in de image.
 
-7. Open de `.dockerignore` in de `src` directory. De syntac is gelijk aan een `.gitignorre` bestand. Hiermee kun je aangeven welke bestanden het `COPY` commando _niet_ mee moet nemen. 
+7. Open de `.dockerignore` in de `src` directory. De syntax is gelijk aan een `.gitignorre` bestand. Hiermee kun je aangeven welke bestanden het `COPY` commando _niet_ mee moet nemen. 
 
    Als je geen `.dockerignore` hebt, wordt de `.gitignore` gebruikt. Als die ook niet bestaat dan wordt alles gekopieerd.
 
@@ -73,7 +74,7 @@ Door gebruik te maken van een multi-stage build houden we de container klein.
    ```
 
    Deze regel hebben we nu een aantal keren gezien. 
-   Strict gezien doet dit "mkdir -p /app && cd /app"
+   Strict gezien doet dit `mkdir -p /app && cd /app`
 
 10. Voeg de volgende regels toe:
 
@@ -106,7 +107,7 @@ Door gebruik te maken van een multi-stage build houden we de container klein.
 
    Hiermee maak je een image op basis van de Dockerfile en tag je image met de naam `hello-dotnet` en versie `0.1`.
    
-2. Als de build klaar is. Controleer je od de image aanwezig is.
+2. Als de build klaar is. Controleer je of de image aanwezig is.
 
    ```
    docker image list
@@ -128,9 +129,12 @@ Als je tegen problemen aanloopt tijdens het uitvoeren van de volgende stappen ki
 
    Hiermee wordt de image `hello-dotnet`, versie `0.1` als container gestart. Poort 5000 wordt getNAT van de host naar poort 5000 in de container. `-d` zorgt ervoor dat de container in daemon mode draait op de achtergrond.
 
-2. Open een browser naar [http://localhost:5000](http://localhost:5000).  Success!
+2. Open een browser naar [http://localhost:5000](http://localhost:5000).
 
-3. Ziet de huidig draaiende container.
+    Of open met een browser `http://<ec2-instance>:5000`.
+
+
+3. Controleer de huidig draaiende container.
 
    ```
    docker container list
@@ -148,19 +152,21 @@ Is je container niet goed opgestart in deel 4? Dan vind je hier stappen om dit t
 
 1. `docker container list --all`.  Dit laat alle draaiende en niet draaiende containers zien.
 
-2. Let op `CONTAINER ID` en `NAMES` van failed container.  Die hebben we bij de volgende stap nodig.
+    Let op `CONTAINER ID` en `NAMES` van een failed container. Die hebben we bij de volgende stap nodig.
 
-3. `docker container logs ...`, vervang `...` met de `CONTAINER ID` of `NAMES` uit de vorige stap. Dit laat de console output zien van de container.
-    Wellicht geeft het een hint waarom de container gefailed is?
+2. `docker container logs ...`, vervang `...` met de `CONTAINER ID` of `NAMES` met een container uit de vorige stap. 
 
-4. Verwijder de container met het stop commando uit deel 6. Ga dan terug naar deel 3 en rebuild de image en run de container opnieuw.
+    Dit laat de console output zien van de container.
+    Wellicht geeft het een hint waarom de container gefailed is.
 
-5. Start de container met `docker run -p 5000:5000 hello-dotnet:0.1` zonder `-d` de console output komt direct op je scherm.
+3. Verwijder de container met het stop commando uit deel 6. Ga dan terug naar deel 3 en rebuild de image en run de container opnieuw.
 
-6. Als je genoeg gezien hebt, gebruik dan CNTRL-C om terug te gaan naar je host's terminal.
+4. Start de container met `docker run -p 5000:5000 hello-dotnet:0.1` zonder `-d` de console output komt direct op je scherm.
+
+5. Als je genoeg gezien hebt, gebruik dan CNTRL-C om terug te gaan naar je host's terminal.
 
 Is poort 5000 al in gebruik op je systeem. Je kunt de poort wijzigen naar bijvoorbeeld 5001 door `docker run -p 5001:5000 hello-dotnet:0.1` uit te voeren. 
-Open dan de volgende url ```curl localhost:5001```
+Open dan de volgende URL ```curl localhost:5001``` of ```http://<ec2-instance>:5001```.
 
 
 5: Stop en verwijder de container
@@ -204,7 +210,7 @@ Open dan de volgende url ```curl localhost:5001```
 
    De eerste image heeft nu een naam gekregen en het `COPY` commando kan dit gebruiken.
 
-5. Sla de Dockerfile op.
+5. Sla de `Dockerfile` op.
 
 
 7: Build de multi-stage image
@@ -234,7 +240,7 @@ Open dan de volgende url ```curl localhost:5001```
    docker run --name hello-dotnet -p 5000:5000 -d hello-dotnet:0.2
    ```
 
-2. Open met je browser [http://localhost:5000](http://localhost:5000).  
+2. Open met je browser [http://ec2-instance](http://ec2-instance).
 
 3. Controleer de huidig draaiende container.
 
@@ -248,8 +254,9 @@ Open dan de volgende url ```curl localhost:5001```
 9: Stop en verwijder de container
 ---------------------------------
 
-1. Zoals je gedaan hebt in stap 5. Kijk naar de output van de draaiende containers, stop en verwijder de hello-dotnet container. 
+1. Zoals je gedaan hebt in stap 5. Kijk naar de output van de draaiende containers, stop en verwijder de hello-dotnet container.
 
+    Maak anders gebruik van het `make` commando `make cleanup`.
 
 10: Images
 ---------------------------
@@ -268,8 +275,10 @@ Het doel met de multi-stage build is om een kleinere image te maken. Controleer 
 Docker heeft twee images gemaakt. Een heet `<none>` en heeft de .NET applicatie die de source-code gebuild heeft. De andere is `hello-dotnet:0.2` en is vele malen kleiner. We hebben dit gedaan, omdat we op een productie server geen build tools willen hebben. 
 
 
-11: Verwijderen van de <none> images
+11: Verwijderen van de _none_ images
 ------------------------------------
+
+Alleen als je _geen_ gebruik hebt gemaakt van `make cleanup`.
 
 1. Vanaf de command-line kijk naar de lijst met images.
 

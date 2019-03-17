@@ -5,7 +5,7 @@ In deze opdracht ga je toepassen wat je in de vorige opdrachten geleerd hebt. Je
 
 Voor deze opdracht ga je een PHP applicatie maken. 
 
-***Bron:*** https://hub.docker.com/_/php/
+***Image:*** [PHP](https://hub.docker.com/_/php/)
 
 1: PHP-apache
 -------------
@@ -14,8 +14,10 @@ Voor deze opdracht ga je een PHP applicatie maken.
     - Maak een Dockerfile.
     - Kopieer de `src/index.php` in de container op de juiste plek. 
 
+    Kijk voor informatie over de image naar de PHP link hierboven.
+
 2. Build de container.
-    - Tag de de container met docker-it-youself
+    - Tag de de container met docker-it-youself.
 
 3. Als de build klaar is controleer dat je image aanwezig is.
 
@@ -27,3 +29,11 @@ Voor deze opdracht ga je een PHP applicatie maken.
    curl localhost
    Hoi. De datum van vandaag is: Thursday the 21th.
    ```
+
+    Of open met een browser `http://<ec2-instance>`.
+
+6. Stop en en verwijder de container.
+
+    Dit kun je doen door `docker container stop ...` en `docker container rm ...`.
+
+    Ga anders naar de `done` directory en voer `make cleanup` uit.

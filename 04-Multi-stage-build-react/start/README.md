@@ -1,14 +1,15 @@
 Multi-stage Build met React
 ============================
 
-In de vorige opdracht hebben we direct de source-code in onze container gekopieerd. In deze opdracht gaan we eerst builden en deployen we de gemaakte artifacts.
+In de vorige opdrachten hebben we de source-code in onze container gekopieerd. In deze opdracht gaan we eerst de code builden en deployen we de gemaakte artifacts.
+
 Door gebruik te maken van multi-stage builds kunnen we de uit eindelijke container klein houden, omdat we de build tools en source-code niet deployen.
 
 
 1: Maken van de Dockerfile
 --------------------------
 
-1. Maak een nieuw bestand in de `src` directory en noem het `Dockerfile`
+1. Maak een nieuwe `Dockerfile` in de `src` directory.
 
 2. Voeg de volgende regel toe:
 
@@ -33,7 +34,7 @@ Door gebruik te maken van multi-stage builds kunnen we de uit eindelijke contain
    COPY package.json package-lock.json .
    ```
 
-   Met deze regel kopieer je de package.json en package-lock.json van jouw systeem naar de huidige directory in de image.
+   Met deze regel kopieer je de `package.json` en `package-lock.json` van jouw systeem naar de huidige directory in de image.
 
 5. Voeg de volgende regel toe:
 
@@ -43,7 +44,7 @@ Door gebruik te maken van multi-stage builds kunnen we de uit eindelijke contain
 
    Hiermee worden de packages en dependencies geinstalleerd die nodig zijn voor onze applicatie. 
 
-   We kopieren de package.json en package-lock.json eerst, zodat we optimaal gebruik kunnen maken van de Docker layer caching. Wanneer we de source code van de applicatie aanpassen en de image opnieuw builden worden de npm packages niet opnieuw gedownload. 
+   We kopieren de `package.json` en `package-lock.json` eerst, zodat we optimaal gebruik kunnen maken van de Docker layer caching. Wanneer we de source code van de applicatie aanpassen en de image opnieuw builden worden de npm packages niet opnieuw gedownload. 
    Zeker bij applicaties met veel npm packages en dependecies is de build tijd dan drastisch korter.
 
 6. Voeg de volgende regel toe:
@@ -54,7 +55,7 @@ Door gebruik te maken van multi-stage builds kunnen we de uit eindelijke contain
 
    Deze regel kopieert de rest van de bestanden in je huidige directory naar de huidige directory in de image.
 
-7. Open de `.dockerignore` in de `src` directory. De syntac is gelijk aan een `.gitignorre` bestand. Hiermee kun je aangeven welke bestanden het `COPY` commando _niet_ mee moet nemen. 
+7. Open de `.dockerignore` in de `src` directory. De syntax is gelijk aan een `.gitignorre` bestand. Hiermee kun je aangeven welke bestanden het `COPY` commando _niet_ mee moet nemen. 
 
    Als je geen `.dockerignore` hebt, wordt de `.gitignore` gebruikt. Als die ook niet bestaat dan wordt alles gekopieerd.
 
@@ -83,7 +84,7 @@ Door gebruik te maken van multi-stage builds kunnen we de uit eindelijke contain
 
    Deze regel geeft het commando aan waarmee de container opstart `npm start`.
 
-11. Sla de Dockerfile op.
+11. Sla de `Dockerfile` op.
 
 
 2: Maak een image aan met de Dockerfile
@@ -118,15 +119,17 @@ Als je tegen problemen aanloopt tijdens het uitvoeren van de volgende stappen ki
    docker run -p 3000:3000 -d hello-react:0.1
    ```
 
-   Hiermee wordt de image `hello-react`, versie `0.1` als container gestart. Poort 3000 wordt getNAT van de host naar poort 3000 in de container. `-d` zorgt ervoor dat de container in daemon mode draait op de achtergrond.
+   Hiermee wordt de image `hello-react`, versie `0.1` als container gestart. Poort 3000 wordt getNAT van de host naar poort 3000 in de container. De flag `-d` zorgt ervoor dat de container in daemon mode draait op de achtergrond.
 
-2. Roep met curl de url aan [http://localhost:3000](http://localhost:3000).  Success!
+2. Roep met curl de url aan [http://localhost:3000](http://localhost:3000).
+
+    Of open met een browser `http://<ec2-instance>:3000`.
    
    ```
    curl http://localhost:3000
    ```
 
-3. Ziet de huidig draaiende container.
+3. Controleer de huidig draaiende container.
 
    ```
    docker container list
@@ -144,31 +147,30 @@ Is je container niet goed opgestart in deel 4? Dan vind je hier stappen om dit t
 
 1. `docker container list --all`.  Dit laat alle draaiende en niet draaiende containers zien.
 
-2. Let op `CONTAINER ID` en `NAMES` van failed container.  Die hebben we bij de volgende stap nodig.
+    Let op `CONTAINER ID` en `NAMES` van een failed container. Die hebben we bij de volgende stap nodig.
 
-3. `docker container logs ...`, vervang `...` met de `CONTAINER ID` of `NAMES` uit de vorige stap. Dit laat de console output zien van de container.
-    Wellicht geeft het een hint waarom de container gefailed is?
+2. `docker container logs ...`, vervang `...` met de `CONTAINER ID` of `NAMES` met een container uit de vorige stap. 
 
-4. Verwijder de container met het stop commando uit deel 6. Ga dan terug naar deel 3 en rebuild de image en run de container opnieuw.
+    Dit laat de console output zien van de container.
+    Wellicht geeft het een hint waarom de container gefailed is.
 
-5. Start de container met `docker run -p 3000:3000 hello-react:0.1` zonder `-d` de console output komt direct op je scherm.
+3. Verwijder de container met het stop commando uit deel 6. Ga dan terug naar deel 3 en rebuild de image en run de container opnieuw.
 
-6. Als je genoeg gezien hebt, gebruik dan CNTRL-C om terug te gaan naar je host's terminal.
+4. Start de container met `docker run -p 3000:3000 hello-react:0.1` zonder `-d` de console output komt direct op je scherm.
+
+5. Als je genoeg gezien hebt, gebruik dan CTRL-C om terug te gaan naar je host's terminal.
 
 Is poort 3000 al in gebruik op je systeem. Je kunt de poort wijzigen naar bijvoorbeeld 3001 door `docker run -p 3001:3000 hello-react:0.1` uit te voeren. 
-Open dan de volgende url ```curl localhost:3001```
-
+Open dan de volgende URL ```curl localhost:3001``` of ```http://<ec2-instance>:3001```
 
 5: Stop en verwijder de container
 ---------------------------------
 
-1. `docker container list --all` -- Zie alle container beide gestop en gestart. Let op `CONTAINER ID` en `NAMES` van de running container.
+1. `docker container list --all` -- Zie alle container beide gestopt en gestart. Let op `CONTAINER ID` en `NAMES` van de running container.
 
 2. `docker container rm -f ...` vervang `...` met de `CONTAINER ID` of `NAMES` uit de vorige stap. Hiermee stop en verwijder je de container.
 
 3. `docker image list`.  -- De image bestaat nog steeds. De container die we gemaakt hebben op basis van de image is weg.
-
-
 
 6: Verander de Dockerfile naar een multi-stage
 ----------------------------------------------
@@ -205,7 +207,7 @@ Open dan de volgende url ```curl localhost:3001```
    
    De eerste image heeft nu een naam gekregen en het `COPY` commando kan dit gebruiken.
 
-6. Sla de Dockerfile op.
+6. Sla de `Dockerfile` op.
 
 
 7: Build de multi-stage image
@@ -216,7 +218,7 @@ Open dan de volgende url ```curl localhost:3001```
    ```
    docker build --tag hello-react:0.2 .
    ```
-   Hiermee maak je een image op basis van de Dockerfile en tag je de image met de naam `hello-react` en versie `0.2`.
+   Hiermee maak je een image op basis van de `Dockerfile` en tag je de image met de naam `hello-react` en versie `0.2`.
 
 2. Als de build klaar is. Controleer je of de image aanwezig is.
 
@@ -234,7 +236,7 @@ Open dan de volgende url ```curl localhost:3001```
    docker run --name hello-react -p 80:80 -d hello-react:0.2
    ```
 
-2. Open met je browser [http://localhost](http://localhost).  Success!
+2. Open met je browser [http://ec2-instance](http://<ec2-instance>).
 
 3. Controleer de huidig draaiende container.
 
@@ -250,11 +252,12 @@ Open dan de volgende url ```curl localhost:3001```
 
 1. Zoals je gedaan hebt in stap 5. Kijk naar de output van de draaiende containers, stop en verwijder de hello-react container. 
 
+    Maak anders gebruik van het `make` commando `make cleanup`.
 
 10: Images
----------------------------
+----------
 
-Het doel met de multi-stage build is om een kleinere image te maken. Controleer of dit gelukt is.
+Het doel met de multi-stage build is om een kleine image te maken. Controleer of dit gelukt is.
 
 1. Vanaf de command-line:
 
@@ -265,11 +268,14 @@ Het doel met de multi-stage build is om een kleinere image te maken. Controleer 
    In de meest rechtse kolom kun je de size zien van de images. Kijk naar de images `hello-react:0.1` en `hello-react:0.2`.
    De `0.2` versie is veel kleiner dan de `0.1` versie. 
 
-Docker heeft twee images gemaakt. Een heet `<none>` en heeft de node applicatie die de source-code gebuild heeft. De andere is `hello-react:0.2` en is vele malen kleiner. We hebben dit gedaan, omdat we op een productie server geen build tools willen hebben. 
+Docker heeft twee images gemaakt. Een heet `<none>` en heeft de node applicatie die de source-code gebuild heeft. De andere is `hello-react:0.2` en is vele malen kleiner. 
 
+Dit kun prima toepassen voor een productie omgeving. De uiteindelijke image is klein en heeft geen build tools die je niet op je productie omgeving wilt hebben.
 
-11: Verwijderen van de <none> images
+11: Verwijderen van de _none_ images
 ------------------------------------
+
+Alleen als je _geen_ gebruik hebt gemaakt van `make cleanup`.
 
 1. Vanaf de command-line kijk naar de lijst met images.
 
@@ -285,4 +291,6 @@ Docker heeft twee images gemaakt. Een heet `<none>` en heeft de node applicatie 
    
 4. Controleer dat alle images met `<none>` weg zijn.
 
-   Zijn er nog steeds `<none>` images?  Controleer met `docker container list --all` en kijk of er nog running containers zijn.
+   Zijn er nog steeds `<none>` images?  
+   
+   Controleer met `docker container list --all` en kijk of er nog running containers zijn.

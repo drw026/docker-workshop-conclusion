@@ -20,7 +20,7 @@ Je gaat een Docker compose bestand maken.
    version: '3'
    ```
 
-   Versie 3 is de laatst beschikbare versie. Voor meer informatie ga je naar [compose-file](https://docs.docker.com/compose/compose-file/)
+   Versie 3 is de laatst beschikbare versie. Voor meer informatie ga je naar [compose-file](https://docs.docker.com/compose/compose-file/).
 
 3. Voeg de volgende regel toe:
 
@@ -36,7 +36,7 @@ Je gaat een Docker compose bestand maken.
      backend:
    ```
 
-   Dit is het begin voor de back-end.
+   Dit is het begin voor de backend.
 
 5. Inspringen met nog 2 spaties. De build details. 
 
@@ -44,7 +44,7 @@ Je gaat een Docker compose bestand maken.
        build: backend
    ```
 
-   Hiermee build de Dockerfile in de backend directory.
+   Hiermee wordt de `Dockerfile` in de backend directory gebuild.
 
 6. Op hetzelfde niveau van build, voeg de volgende regels toe.
 
@@ -53,7 +53,7 @@ Je gaat een Docker compose bestand maken.
        - "5000"
     ```
 
-    Hier wordt alleen een interne poort aangegeven. De backend wordt niet gepubliceerd voor de buiten wereld, de containers in de lijst wel.
+    Hier wordt alleen een interne poort aangegeven. De backend wordt niet gepubliceerd voor de buiten wereld.
 
 7. In het volgende deel definieren we de frontend container.
 
@@ -69,7 +69,7 @@ Je gaat een Docker compose bestand maken.
        build: frontend
    ```
 
-   Hiermee build de Dockerfile in de frontend directory.
+   Hiermee build de `Dockerfile` in de frontend directory.
 
 9. Op hetzelfde niveau van build, voeg de volgende regels toe.
 
@@ -90,7 +90,7 @@ Je gaat een Docker compose bestand maken.
     Hiermee wordt de hosts file van de frontend container gevuld met het IP adres en naam van de backend container. 
     Hierdoor kun je vanuit de frontend de volgende referentie gebruiken `http://backend:5000/`.
 
-11. Open de frontend/routes/index.js en wijzig de regel met `const BACKEND = 'http://172.17.0.2:5000';` naar het volgende. 
+11. Open de `frontend/routes/index.js` en wijzig de regel met `const BACKEND = 'http://172.17.0.2:5000';`. 
 
     ```
     const BACKEND = 'http://backend:5000';
@@ -102,11 +102,11 @@ Je gaat een Docker compose bestand maken.
     docker-compose up -d
     ```
 
-    De `-d` zorgt ervoor dat de containers in daemon mode draaien op de achtergrond.
+    De flag `-d` zorgt ervoor dat de containers in daemon mode draaien op de achtergrond.
 
-13. Open met een browser [http://localhost:3000/](http://localhost:3000/).
+13. Open met een browser [http://ec2-instance:3000](http://ec2-instance:3000/).
 
-14. Je kunt de standaard `docker image list` en `docker container list` om de images en de containers te zien die Docker compose heeft gemaakt.
+14. Je kunt de standaard docker commando's `docker image list` en `docker container list` gebruiken om de images en de containers te zien die Docker compose heeft gemaakt.
 
 15. Om Docker composer te stoppen.
 
@@ -114,4 +114,4 @@ Je gaat een Docker compose bestand maken.
     docker-compose down
     ```
 
-    Als je de container stopt zonder `docker-compose` te gebruiken zal Docker-composer automatisch weer een nieuwe container starten, omdat de applicatie zoals gedefinieerd in de docker-compose.yaml niet compleet is.
+    Als je de container stopt zonder `docker-compose` te gebruiken zal Docker-compose automatisch weer een nieuwe container starten, omdat de applicatie zoals gedefinieerd in de docker-compose.yaml dan niet compleet is.

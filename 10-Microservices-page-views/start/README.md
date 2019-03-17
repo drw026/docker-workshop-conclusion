@@ -8,27 +8,33 @@ De applicatie bestaat uit vier onderdelen:
     - [Flask](http://flask.pocoo.org/)
     - [NGINX](https://www.nginx.com/)
 
-**Tip:** Je kunt jouw werkt controleren met wat in de done map staat.
+**Tip:** Je kunt jouw werkt controleren met wat in de `done` map staat.
 
 1: NGINX
 --------
 
-1. Maak een NGINX webserver container aan de hand van de volgende voorwaarden:
-    - Maak een Dockerfile voor de NGINX websever.  
+1. Ga naar de pageviews-nginx directory en review de `Dockerfile`.
+
+2. Maak een NGINX webserver container aan de hand van de volgende voorwaarden:
+    - Vul de `Dockerfile` aan voor de NGINX websever.  
     - Zorg dat de `src/nginx.conf` gekopieerd wordt in de container. 
     - NGINX moet beschikbaar zijn op poort 80.
 
-2. Build de NGINX container.
-    - Tag de de container met pageviews-nginx.
+3. Build de NGINX container.
+    - Tag de de container met `pageviews-nginx`.
 
-3. Als de build klaar is controleer dat je image aanwezig is.
+4. Als de build klaar is controleer dat je image aanwezig is.
 
 
 2: PostgreSQL
 -------------
 
-1. Maak een PostgreSQL database container:
-    - Maak een Dockerfile voor de PostgreSQL database server.
+**Image:** [postgresql](https://hub.docker.com/_/postgres)
+
+1. Ga naar de pageviews-postgresql directory en review de `Dockerfile`.
+
+2. Maak een PostgreSQL database container:
+    - Vul de `Dockerfile` aan voor de PostgreSQL database server.
     - Maak de volgende environment(ENV) variabelen aan:
         - POSTGRES_USER=postgres
         - POSTGRES_PASSWORD=dbPageViews
@@ -36,34 +42,38 @@ De applicatie bestaat uit vier onderdelen:
     - Zorg dat de `src/init.sh` gekopieerd wordt in de contianer naar `/docker-entrypoint-initdb.d`
     - PostgreSQL moet beschikbaar zijn op poort 5432.
 
-2. Build de PostgreSQL container.
-    - Tag de de container met pageviews-postgres.
+3. Build de PostgreSQL container.
+    - Tag de de container met `pageviews-postgres`.
 
-3. Als de build klaar is, controleer dat je image aanwezig is.
-
+4. Als de build klaar is, controleer dat je image aanwezig is.
 
 3: Redis
 --------
 
-1. Maak een Dockerfile voor Redis.
+**Image:** [redis](https://hub.docker.com/_/redis)
+
+1. Ga naar de pageviews-redis directory en review de `Dockerfile`.
+
+2. Maak een `Dockerfile` voor Redis.
+    - Vul de `Dockerfile` aan voor de redis server.
     - Er zijn geen instellingen die gewijzigd hoeven te worden.
 
-2. Build de Redis container.
-    - Tag de de container met pageviews-redis.
+3. Build de Redis container.
+    - Tag de de container met `pageviews-redis`.
 
-3. Als de build klaar is controleer dat je image aanwezig is.
-
-
+4. Als de build klaar is controleer dat je image aanwezig is.
 
 4: Webapp
 ---------
 
-1. Voeg aan de Dockerfile van de webapp het volgende toe:
+1. Ga naar de pageviews-webapp directory en review de `Dockerfile`.
+
+1. Voeg aan de `Dockerfile` van de webapp het volgende toe:
     - Kopieer de `src` directory in de container naar `/home/flask/app/web`.
     - De webapp moet beschikbaar zijn op poort 8000.
 
 2. Build de webapp container.
-    - Tag de de container met pageviews-webapp.
+    - Tag de de container met `pageviews-webapp`.
 
 3. Als de build klaar is controleer dat je image aanwezig is.
 
@@ -75,19 +85,31 @@ Als je tegen problemen aanloopt tijdens het uitvoeren van de volgende stappen ki
 
 1. Vanaf de command-line voer je het volgende uit:
 
+    - PostgreSQL
+    ```
+    docker run --name pageviews-postgres -d pageviews-postgres 
+    ```
+
+    - Redis
    ```
-   docker run --name pageviews-postgres -d pageviews-postgres 
    docker run --name pageviews-redis -d pageviews-redis
+   ```
+
+    - webapp
+   ```
    docker run --name pageviews-webapp --link pageviews-postgres:postgres --link pageviews-redis:redis -d pageviews-webapp
+   ```
+   Met de flag `--link` maken we een verbinding mogelijk naar de postgres container en de redis container.
+
+    **Bron:** https://docs.docker.com/network/links/#communication-across-links
+
+
+    - nginx
+    ```
    docker run --name pageviews-nginx --link pageviews-webapp -p 80:80 -d pageviews-nginx
    ```
 
-2. Roep met curl de url aan [http://localhost](http://localhost).
-   
-   ```
-   curl http://localhost
-   curl localhost/resetcounter
-   ```
+2. Open met je browser [http://ec2-instance](http://ec2-instance).
 
 3. Controleer de huidig draaiende containers.
 
@@ -103,22 +125,20 @@ Is je container niet goed opgestart? Dan vind je hier stappen om dit te onderzoe
 
 1. `docker container list --all`.  Dit laat alle draaiende en niet draaiende containers zien.
 
-2. Let op `CONTAINER ID` en `NAMES` van failed container.  Die hebben we bij de volgende stap nodig.
+    Let op `CONTAINER ID` en `NAMES` van een failed container. Die hebben we bij de volgende stap nodig.
 
-3. `docker container logs ...`, vervang `...` met de `CONTAINER ID` of `NAMES` uit de vorige stap. Dit laat de console output zien van de container.
-    Wellicht geeft het een hint waarom de container gefailed is?
+2. `docker container logs ...`, vervang `...` met de `CONTAINER ID` of `NAMES` met een container uit de vorige stap. 
 
-4. Verwijder de container met het stop commando uit deel 6. Ga dan terug naar deel 3 en rebuild de image en run de container opnieuw.
-
-5. Start de container met `docker run IMAGE` zonder `-d` de console output komt direct op je scherm.
-
-6. Als je genoeg gezien hebt, gebruik dan CNTRL-C om terug te gaan naar je host's terminal.
-
+    Dit laat de console output zien van de container.
+    Wellicht geeft het een hint waarom de container gefailed is.
 
 7: Stop en verwijder de containers
 ----------------------------------
 
 Je kunt alle containers in een commando stoppen door het volgende te doen.
+Ga naar de `done` directory en maak gebruik van het `make` commando `make cleanup`.
+
+Of
 
 ```
 docker container stop $(docker container list -aq)
@@ -128,8 +148,7 @@ Of
 ```
 docker container rm -f $(docker container list -aq)
 ```
-
-Anders stop je de containers per container.
+Of stop de containers per container.
 
 1. `docker container list` -- Let op `CONTAINER ID` en `NAMES` van de running container.
 
@@ -143,5 +162,3 @@ Anders stop je de containers per container.
 
 6. `docker image list`.  -- De image bestaat nog steeds. De container die we gemaakt hebben op basis van de image is weg.
 
-
-***TIP:*** In de `done` directory staat een `Makefile` deze heeft een aantal funties onder andere een cleanup. Deze kun je uitvoeren door `make cleanup` uit te voeren.
