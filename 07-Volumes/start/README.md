@@ -30,11 +30,11 @@ Het probleem
 
 8. Klik op [See files](http://ec2-instance:3000/files).
 
-De eerste container is verwijderd en in de nieuwe container is het bestand wat je geupload hebt weg.
+De eerste container is verwijderd en in de nieuwe container is het bestand dat je geupload hebt weg.
 
 In de meeste gevallen is dit wat je wilt namelijk een geisoleerde omgeving waar binnen niks wijzigt _"stateless"_ en die je kan verwijderen en ergens anders opnieuw kan starten. 
 
-In dit geval willen juist wel de data opslaan, dus laten we gaan experimenteren met volumes.
+In dit geval willen de data juist wél opslaan, dus laten we gaan experimenteren met volumes.
 
 9. Stop de docker container. 
 
@@ -57,7 +57,7 @@ Merk op dat de `npm init` niet opnieuw gedaan is. Caching!
 
 5. Start de nieuwe image `docker run -p 3000:3000 -v $PWD/upload:/app/public -d volumetest:0.2` vervang `/pad/naar/start/upload` met de directory uit stap 4.
 
-6. Browse naar [http://ec2-instance:3000](http://ec2-instance:3000) en upload een bestand. Klik op [See files](http://ec2-instance:3000/files) en zie het bestand dat je zojuist geupload hebt.
+6. Browse naar [http://ec2-instance:3000](http://ec2-instance:3000) en upload een bestand. Klik op [See ./files](http://ec2-instance:3000/files) en zie het bestand dat je zojuist geupload hebt.
 
 7. Het bestand staat nu in de upload directory die je gekoppeld hebt. 
 
@@ -76,6 +76,6 @@ Merk op dat de `npm init` niet opnieuw gedaan is. Caching!
     docker run ...
     ```
 
-9. Klik op [See files](http://ec2-instance:3000/files) en het bestand wat je geupload had staat er nog.
+9. Klik op [See ./files](http://ec2-instance:3000/files) en het bestand wat je geupload had staat er nog.
 
 Volume links kunnen volledige paden zijn, maar bijvoorbeeld ook `.` voor de huidige directory of `~` voor je home directory.
