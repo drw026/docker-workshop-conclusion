@@ -3,7 +3,7 @@ Multi-stage Build met php
 
 In deze opdracht ga je zelf aan de slag om een applicatie te maken die gebruikt maakt van een multi-stage build.
 
-De applicatie is een PHP applicatie en jij moet er voor zorgen dat de `Dockerfile` aangevuld wordt, zodat het een werkende applicatie oplevert.
+De applicatie is een PHP applicatie en jij moet er voor zorgen dat de `Dockerfile` aangevuld wordt zodat het een werkende applicatie oplevert.
 
 
 ***Image:*** [PHP](https://hub.docker.com/_/php/)
@@ -19,7 +19,7 @@ Kijk voor informatie over de image naar de PHP link hierboven.
 2. Build de container.
     - Tag de container met `ms-php`
 
-3. Als de build klaar is controleer dat je image aanwezig is.
+3. Als de build klaar is dan controleer dat je image aanwezig is.
 
 4. Run de container image.
 
