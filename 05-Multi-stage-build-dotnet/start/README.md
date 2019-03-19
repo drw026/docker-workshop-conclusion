@@ -290,7 +290,7 @@ Alleen als je _geen_ gebruik hebt gemaakt van `make cleanup`.
    docker image prune -f
    ```
    
-   Dit verwijderd alle images met `<none>`. Alle andere images blijven staan. 
+   Dit verwijdert alle images met `<none>`. Alle andere images blijven staan. 
    
 4. Controleer dat alle images met `<none>` weg zijn.
 
