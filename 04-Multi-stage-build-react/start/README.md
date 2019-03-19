@@ -1,9 +1,9 @@
 Multi-stage Build met React
 ============================
 
-In de vorige opdrachten hebben we de source-code in onze container gekopieerd. In deze opdracht gaan we eerst de code builden en deployen we de gemaakte artifacts.
+In de vorige opdrachten hebben we de source-code in onze container gekopieerd. In deze opdracht gaan we eerst de code builden en daarna deployen we de gemaakte artifacts.
 
-Door gebruik te maken van multi-stage builds kunnen we de uit eindelijke container klein houden, omdat we de build tools en source-code niet deployen.
+Door gebruik te maken van *multi-stage builds* kunnen we de uit eindelijke container klein houden, omdat we de build tools en source-code niet deployen.
 
 
 1: Maken van de Dockerfile
@@ -44,7 +44,7 @@ Door gebruik te maken van multi-stage builds kunnen we de uit eindelijke contain
 
    Hiermee worden de packages en dependencies geinstalleerd die nodig zijn voor onze applicatie. 
 
-   We kopieren de `package.json` en `package-lock.json` eerst, zodat we optimaal gebruik kunnen maken van de Docker layer caching. Wanneer we de source code van de applicatie aanpassen en de image opnieuw builden worden de npm packages niet opnieuw gedownload. 
+   We kopiëren de `package.json` en `package-lock.json` eerst, zodat we optimaal gebruik kunnen maken van de Docker layer caching. Wanneer we de source code van de applicatie aanpassen en de image opnieuw builden worden de npm packages niet opnieuw gedownload. 
    Zeker bij applicaties met veel npm packages en dependecies is de build tijd dan drastisch korter.
 
 6. Voeg de volgende regel toe:
@@ -197,7 +197,7 @@ Open dan de volgende URL ```curl localhost:3001``` of ```http://<ec2-instance>:3
    COPY --from=build /usr/app/build /usr/share/nginx/html
    ```
 
-   Deze regel gebruikt de `--from=build`, hiermee kopieeren we bestanden van de image `build` naar de container.
+   Deze regel gebruikt de `--from=build`, hiermee kopiëren we bestanden van de image `build` naar de container.
    
 5. Verander bovenaan de `FROM node:alpine` naar:
 
