@@ -1,0 +1,71 @@
+AWSTemplateFormatVersion: '2010-09-09'
+
+Description:
+  "
+    A lab server spawning template, it exposes the unique private key on $IP:8000/.ssh/id_rsa this will be closed as soon as you login.
+  "
+
+Parameters:
+  InstanceType:
+    Type: String
+    Default: t3.medium
+  Vpc:
+    Type: AWS::EC2::VPC::Id
+  ImageId:
+    Type: AWS::EC2::Image::Id
+    Default: ami-07683a44e80cd32c5
+  ManagementCidr:
+    Type: String
+    AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
+    Default: 0.0.0.0/0
+
+Resources:
+  LabSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName:
+        !Sub LabServers-${AWS::StackName}
+      GroupDescription: !Sub "SG for ${AWS::StackName} Lab Servers"
+      VpcId: !Ref Vpc
+      SecurityGroupIngress:
+      - IpProtocol: "tcp"
+        FromPort: 22
+        ToPort: 22
+        CidrIp: !Ref ManagementCidr
+      - IpProtocol: "tcp"
+        FromPort: 8000
+        ToPort: 9000
+        CidrIp: !Ref ManagementCidr
+      Tags:
+        -
+          Key: "Name"
+          Value:
+            !Sub LabServers-${AWS::StackName}
+
+  LaunchConfiguration:
+      Type: AWS::AutoScaling::LaunchConfiguration
+      Properties:
+        ImageId: !Ref ImageId
+        SecurityGroups:
+          - !Ref LabSecurityGroup
+        InstanceType: !Ref InstanceType
+        UserData:
+          Fn::Base64: |
+            #!/bin/env bash
+            sudo su - ec2-user -c '
+            ssh-keygen -t rsa -N "" -f /home/ec2-user/.ssh/id_rsa
+            cat /home/ec2-user/.ssh/id_rsa.pub >> /home/ec2-user/.ssh/authorized_keys
+            python -m SimpleHTTPServer& 
+            SRV_PID="$!"
+            echo "kill -9 $SRV_PID; sed -i \"s/.*pyServer.*//g\" .bashrc" >> .bashrc '
+
+  AutoScalingGroup:
+    Type: "AWS::AutoScaling::AutoScalingGroup"
+    Properties:
+      AvailabilityZones:
+        Fn::GetAZs:
+          Ref: "AWS::Region"
+      LaunchConfigurationName: !Ref LaunchConfiguration
+      MaxSize: "100"
+      MinSize: "0"
+      DesiredCapacity: "0"
