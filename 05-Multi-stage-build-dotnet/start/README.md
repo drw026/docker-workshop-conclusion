@@ -1,7 +1,7 @@
 Multi-stage Build met .NET Core
 ================================
 
-In .NET Core hanteren we hetzelfde principe van een builden en daarna deployen van de artifacts. 
+In .NET Core hanteren we hetzelfde principe van eerst builden en daarna deployen van de artifacts. 
 
 Door gebruik te maken van een multi-stage build houden we de container klein.
 
@@ -17,7 +17,7 @@ Door gebruik te maken van een multi-stage build houden we de container klein.
    FROM microsoft/dotnet:2.1-sdk-alpine
    ```
 
-   Dit geeft aan start met de [.net build tools](https://hub.docker.com/r/microsoft/dotnet/) base-image en specifiek de alpine variant.
+   Dit geeft aan: start met de [.net build tools](https://hub.docker.com/r/microsoft/dotnet/) base-image en specifiek de alpine variant.
 
 3. Voeg de volgende regel toe:
 
@@ -44,7 +44,7 @@ Door gebruik te maken van een multi-stage build houden we de container klein.
 
    Hiermee download je libraries van de NuGet de package repository.
 
-   We kopieeren het manifest als eerst, zodat we optimaal gebruik kunnen maken van de Docker layer caching. Wanneer we de source code van de applicatie aanpassen en de image opnieuw builden worden de libraries niet opnieuw gedownload.
+   We kopiëren het manifest als eerst, zodat we optimaal gebruik kunnen maken van de Docker layer caching. Wanneer we de source code van de applicatie aanpassen en de image opnieuw builden worden de libraries niet opnieuw gedownload.
 
 6. Voeg de volgende regel toe:
 
@@ -199,7 +199,7 @@ Open dan de volgende URL ```curl localhost:5001``` of ```http://<ec2-instance>:5
    COPY --from=build /app .
    ```
 
-   Deze regel gebruikt de `--from=build`, hiermee kopieeren we bestanden van de image `build` naar de container.
+   Deze regel gebruikt de `--from=build`, hiermee kopiëren we bestanden van de image `build` naar de container.
 
 
 4. Verander bovenaan de `FROM microsoft/dotnet:2.1-sdk-alpine` naar:
@@ -290,7 +290,7 @@ Alleen als je _geen_ gebruik hebt gemaakt van `make cleanup`.
    docker image prune -f
    ```
    
-   Dit verwijderd alle images met `<none>`. Alle andere images blijven staan. 
+   Dit verwijdert alle images met `<none>`. Alle andere images blijven staan. 
    
 4. Controleer dat alle images met `<none>` weg zijn.
 

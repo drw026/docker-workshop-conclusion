@@ -11,7 +11,7 @@ Deze applicatie bestaat uit een aantal API's.
     - API - showtimes
     - API - users
 
-**Tip:** Je kunt jouw werkt controleren met wat in de done map staat.
+**Tip:** Je kunt jouw werk controleren met wat in de done map staat.
 
 0: Prerequisites
 ----------------
@@ -34,7 +34,7 @@ Voeg achter eerste regel in de `/etc/hosts` van je ec2 instance het volgende toe
 2. Build de traefik container:
     - Tag de de container met cinema-traefik.
 
-3. Als de build klaar is controleer dat je image aanwezig is.
+3. Als de build klaar is: controleer dat je image aanwezig is.
 
 4. Start de Traefik loadbalancer.
 
@@ -46,7 +46,7 @@ Voeg achter eerste regel in de `/etc/hosts` van je ec2 instance het volgende toe
 2. Build de MongoDB container.
     - Tag de de container met cinema-mongo.
 
-3. Als de build klaar is, controleer dat de image aanwezig is.
+3. Als de build klaar is: controleer dat de image aanwezig is.
 
 3: API - bookings
 -----------------
@@ -57,7 +57,7 @@ Voeg achter eerste regel in de `/etc/hosts` van je ec2 instance het volgende toe
    `LABEL traefik.backend=bookings`
    `LABEL traefik.frontend.rule=Host:bookings.local`
 
-Met de labels geven we aan hoe de API toevoegd wordt aan de loadbalancer. De traefik frontend luistert op `bookings.local` en koppelt dit met de bookings container als backend.
+Met de labels geven we aan hoe de API toegevoegd wordt aan de loadbalancer. De traefik frontend luistert op `bookings.local` en koppelt dit met de bookings container als backend.
 
 3. Build de bookings container.
     - Tag de de container met cinema-bookings.
@@ -74,7 +74,7 @@ Met de labels geven we aan hoe de API toevoegd wordt aan de loadbalancer. De tra
    `LABEL traefik.backend=movies`
    `LABEL traefik.frontend.rule=Host:movies.local`
 
-Met de labels geven we aan hoe de API toevoegd aan de loadbalancer. De traefik frontend luistert op `movies.local` en koppelt dit met de movies container als backend.
+Met de labels geven we aan hoe de API toevoegt aan de loadbalancer. De traefik frontend luistert op `movies.local` en koppelt dit met de movies container als backend.
 
 3. Build de movies container.
     - Tag de de container met cinema-movies.
@@ -91,7 +91,7 @@ Met de labels geven we aan hoe de API toevoegd aan de loadbalancer. De traefik f
    `LABEL traefik.backend=showtimes`
    `LABEL traefik.frontend.rule=Host:showtimes.local`
 
-Met de labels geven we aan hoe de API toevoegd aan de loadbalancer. De traefik frontend luistert op `showtimes.local` en koppelt dit met de showtimes container als backend.
+Met de labels geven we aan hoe de API toevoegt aan de loadbalancer. De traefik frontend luistert op `showtimes.local` en koppelt dit met de showtimes container als backend.
 
 3. Build de showtimes container.
     - Tag de de container met cinema-showtimes.
@@ -108,7 +108,7 @@ Met de labels geven we aan hoe de API toevoegd aan de loadbalancer. De traefik f
    `LABEL traefik.backend=users`
    `LABEL traefik.frontend.rule=Host:users.local`
 
-Met de labels geven we aan hoe de API toevoegd aan de loadbalancer. De traefik frontend luistert op `users.local` en koppelt dit met de users container als backend.   
+Met de labels geven we aan hoe de API toevoegt aan de loadbalancer. De traefik frontend luistert op `users.local` en koppelt dit met de users container als backend.   
 
 3. Build de users container.
     - Tag de de container met cinema-users.

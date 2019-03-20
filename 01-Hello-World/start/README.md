@@ -42,7 +42,7 @@ De Nginx image staat in de lijst.
    ```
    docker container stop ... 
    ```
-   Vervang `...` met de `CONTAINER ID` uit stap 2
+   Vervang `...` met de `CONTAINER ID` uit stap 3
 
 6. Image
 
@@ -59,7 +59,7 @@ Het Volume stuk komt later uitgebreid aan bod, maar in de bonus opdracht gaan we
 Draai een prebuild nginx container
 ----------------------------------
 
-1. `docker pull nginx:alpine`  wil je meer weten over deze image [Docker Hub](https://hub.docker.com/_/nginx/) en [Dockerfile](https://github.com/nginxinc/docker-nginx/blob/590f9ba27d6d11da346440682891bee6694245f5/mainline/alpine/Dockerfile) om te zien hoe die gemaakt is.
+1. `docker pull nginx:alpine`  wil je meer weten over deze image? Zie [Docker Hub](https://hub.docker.com/_/nginx/) en [Dockerfile](https://github.com/nginxinc/docker-nginx/blob/590f9ba27d6d11da346440682891bee6694245f5/mainline/alpine/Dockerfile) om te zien hoe die gemaakt is.
 
 2. Maak een directory in de start directory aan bijvoorbeeld `src`. 
 

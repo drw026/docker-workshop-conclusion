@@ -1,14 +1,14 @@
 Microservices - Page Views
 ==========================
 
-In deze opdracht gaan we een mircoservices applicatie maken die bij houdt hoe vaak de webpagina bezocht is.
+In deze opdracht gaan we een mircoservices applicatie maken die bijhoudt hoe vaak de webpagina bezocht is.
 De applicatie bestaat uit vier onderdelen:
     - [PostgreSQL](https://www.postgresql.org/)
     - [Redis](https://redis.io/)
     - [Flask](http://flask.pocoo.org/)
     - [NGINX](https://www.nginx.com/)
 
-**Tip:** Je kunt jouw werkt controleren met wat in de `done` map staat.
+**Tip:** Je kunt jouw werk controleren met wat in de `done` map staat.
 
 1: NGINX
 --------
@@ -23,7 +23,7 @@ De applicatie bestaat uit vier onderdelen:
 3. Build de NGINX container.
     - Tag de de container met `pageviews-nginx`.
 
-4. Als de build klaar is controleer dat je image aanwezig is.
+4. Als de build klaar is: controleer dat je image aanwezig is.
 
 
 2: PostgreSQL
@@ -45,7 +45,7 @@ De applicatie bestaat uit vier onderdelen:
 3. Build de PostgreSQL container.
     - Tag de de container met `pageviews-postgres`.
 
-4. Als de build klaar is, controleer dat je image aanwezig is.
+4. Als de build klaar is: controleer dat je image aanwezig is.
 
 3: Redis
 --------
@@ -61,7 +61,7 @@ De applicatie bestaat uit vier onderdelen:
 3. Build de Redis container.
     - Tag de de container met `pageviews-redis`.
 
-4. Als de build klaar is controleer dat je image aanwezig is.
+4. Als de build klaar is: controleer dat je image aanwezig is.
 
 4: Webapp
 ---------
@@ -75,7 +75,7 @@ De applicatie bestaat uit vier onderdelen:
 2. Build de webapp container.
     - Tag de de container met `pageviews-webapp`.
 
-3. Als de build klaar is controleer dat je image aanwezig is.
+3. Als de build klaar is: controleer dat je image aanwezig is.
 
 
 5: Start de containers
