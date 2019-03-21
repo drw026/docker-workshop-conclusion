@@ -31,7 +31,7 @@ Door gebruik te maken van *multi-stage builds* kunnen we de uit eindelijke conta
 4. Voeg de volgende regel toe:
 
    ```
-   COPY package.json package-lock.json .
+   COPY package.json package-lock.json /usr/src/app/
    ```
 
    Met deze regel kopieer je de `package.json` en `package-lock.json` van jouw systeem naar de huidige directory in de image.
