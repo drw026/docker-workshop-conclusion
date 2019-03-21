@@ -6,29 +6,20 @@ Installatie Docker CE on AWS EC2
 
 ### Linux
 
-Volg de installing docker instructies via de volgende link:
-
-- [https://docs.aws.amazon.com/AmazonECS/latest/developerguide/docker-basics.html#install_docker](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/docker-basics.html#install_docker)
-
+Docker en docker compose zijn pre-installed op de ec2-instances.
 
 Controle
 --------
 
 Vanaf de command-line:
 
-`docker --version`
+```bash
+docker --version
+Docker version 18.06.1-ce, build e68fc7a215d7133c34aa18e3b72b4a21fd0c6136
 
-`docker run hello-world`
+```
 
 Als beide werken dan is je docker omgeving correct opgezet.
-
-Installatie Docker Compose
---------------------------
-
-Volg de Install Compose on Linux systems via de volgende link:
-
-- [https://docs.docker.com/compose/install/] (https://docs.docker.com/compose/install/)
-
 
 Start downloaden docker images
 -------------------------------
