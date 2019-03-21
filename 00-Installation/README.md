@@ -16,7 +16,6 @@ Vanaf de command-line:
 ```bash
 docker --version
 Docker version 18.06.1-ce, build e68fc7a215d7133c34aa18e3b72b4a21fd0c6136
-
 ```
 
 Als beide werken dan is je docker omgeving correct opgezet.
