@@ -25,7 +25,7 @@ Door gebruik te maken van *multi-stage builds* kunnen we de uit eindelijke conta
    WORKDIR /usr/src/app
    ```
 
-   Met deze regel start het process vanaf de `/usr/app` directory. De directory wordt aangemaakt als die nog niet bestaat.
+   Met deze regel start het process vanaf de `/usr/src/app` directory. De directory wordt aangemaakt als die nog niet bestaat.
 
 
 4. Voeg de volgende regel toe:
@@ -194,7 +194,7 @@ Open dan de volgende URL ```curl localhost:3001``` of ```http://<ec2-instance>:3
 4. Voeg de volgende regel toe:
 
    ```
-   COPY --from=build /usr/app/build /usr/share/nginx/html
+   COPY --from=build /usr/src/app/build /usr/share/nginx/html
    ```
 
    Deze regel gebruikt de `--from=build`, hiermee kopiëren we bestanden van de image `build` naar de container.
