@@ -22,7 +22,7 @@ Door gebruik te maken van *multi-stage builds* kunnen we de uit eindelijke conta
 3. Voeg de volgende regel toe:
 
    ```
-   WORKDIR /usr/app
+   WORKDIR /usr/src/app
    ```
 
    Met deze regel start het process vanaf de `/usr/app` directory. De directory wordt aangemaakt als die nog niet bestaat.
