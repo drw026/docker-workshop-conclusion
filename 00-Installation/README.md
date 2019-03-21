@@ -4,8 +4,6 @@ Installatie Docker Community Edition
 Installatie Docker CE on AWS EC2
 --------------------------------
 
-### Linux
-
 Docker en docker compose zijn pre-installed op de ec2-instances.
 
 Controle
