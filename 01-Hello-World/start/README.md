@@ -24,18 +24,19 @@ Hiermee wordt de image `nginx`, versie `latest` als container gestart. `-p` NAT 
 
    Als de continer goed opgestart is dan zie je de `Welcome to nginx!` pagina.
 
-3. Zie de huidig draaiende container.
-
-   ```
-   docker container list
-   ```
-4. Voer het volgende commando uit.
+3. Voer het volgende commando uit.
 
    ``` 
    docker image list
    ```
 
 De Nginx image staat in de lijst.
+
+4. Zie de huidig draaiende container.
+
+   ```
+   docker container list
+   ```
 
 5. Stop de container met het volgende commando:
 
