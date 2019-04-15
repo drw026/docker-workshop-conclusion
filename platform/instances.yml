@@ -33,7 +33,15 @@ Resources:
         ToPort: 22
         CidrIp: !Ref ManagementCidr
       - IpProtocol: "tcp"
-        FromPort: 8000
+        FromPort: 80
+        ToPort: 80
+        CidrIp: !Ref ManagementCidr
+      - IpProtocol: "tcp"
+        FromPort: 443
+        ToPort: 443
+        CidrIp: !Ref ManagementCidr
+      - IpProtocol: "tcp"
+        FromPort: 3000
         ToPort: 9000
         CidrIp: !Ref ManagementCidr
       Tags:
@@ -49,15 +57,27 @@ Resources:
         SecurityGroups:
           - !Ref LabSecurityGroup
         InstanceType: !Ref InstanceType
+        BlockDeviceMappings:
+          - DeviceName: "/dev/xvda"
+            Ebs:
+              VolumeSize: 50
+              DeleteOnTermination: true
         UserData:
           Fn::Base64: |
             #!/bin/env bash
+            yum install git bash-completion vim jq -y
+            amazon-linux-extras install docker -y
+            usermod -a -G docker ec2-user
+            curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+            chmod +x /usr/local/bin/docker-compose
+            systemctl start docker
             sudo su - ec2-user -c '
             ssh-keygen -t rsa -N "" -f /home/ec2-user/.ssh/id_rsa
             cat /home/ec2-user/.ssh/id_rsa.pub >> /home/ec2-user/.ssh/authorized_keys
             python -m SimpleHTTPServer& 
             SRV_PID="$!"
-            echo "kill -9 $SRV_PID; sed -i \"s/.*pyServer.*//g\" .bashrc" >> .bashrc '
+            echo "kill -9 $SRV_PID; sed -i \"s/.*pyServer.*//g\" .bashrc" >> .bashrc 
+            git clone https://gitlab.com/conclusionxforce/container/docker-workshop.git '
 
   AutoScalingGroup:
     Type: "AWS::AutoScaling::AutoScalingGroup"
