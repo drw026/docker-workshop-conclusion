@@ -23,6 +23,8 @@ Start downloaden docker images
 
 Het downloaden van docker images neemt wat tijd in beslag, dus start met downloaden, zodat deze beschikbaar zijn zodra je ze nodig hebt:
 
+Note: Er is een `00-Installation/scripts/docker-pull.sh` script die alle images voor je download.
+
 1. `docker pull nginx`
 2. `docker pull node:alpine`
 3. `docker pull microsoft/dotnet:2.1-aspnetcore-runtime-alpine`
@@ -35,5 +37,3 @@ Het downloaden van docker images neemt wat tijd in beslag, dus start met downloa
 10. `docker pull postgres`
 11. `docker pull redis:alpine`
 12. `docker pull python:3.6.2-slim`
-
-Note: er is een 00-Installation/scripts/docker-pull.sh script

@@ -13,7 +13,6 @@ Voorwaarden
 -------------
 
 Om aan deze sessie mee te doen kun je SSH'en naar vooraf opgezette AWS EC2 instance.
-Voordat je met deze sessie start maak je een clone van deze repository op de EC2 instance of jouw laptop.
 
 Alternatief
 -----------

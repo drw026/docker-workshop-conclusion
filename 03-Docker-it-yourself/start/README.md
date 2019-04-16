@@ -3,7 +3,7 @@ Docker it yourself
 
 In deze opdracht ga je toepassen wat je in de vorige opdrachten geleerd hebt. Je kunt altijd even spieken in de `done` map mocht je er niet uitkomen.
 
-Voor deze opdracht ga je een PHP applicatie maken. 
+Voor deze opdracht ga je een PHP applicatie maken. Gebruik hiervoor de PHP image van docker hub. Zie de image link hieronder en zoek naar php:<version>-apache voor meer informatie over hoe je de image kunt opbouwen voor deze opdracht.
 
 ***Image:*** [PHP](https://hub.docker.com/_/php/)
 
